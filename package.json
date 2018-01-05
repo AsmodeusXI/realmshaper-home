@@ -1,0 +1,28 @@
+{
+  "name": "realmshaper-home",
+  "version": "0.0.1",
+  "description": "My new homepage!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsmodeusXI/realmshaper-home.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AsmodeusXI/realmshaper-home/issues"
+  },
+  "homepage": "https://github.com/AsmodeusXI/realmshaper-home#readme",
+  "dependencies": {
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "awesome-typescript-loader": "^3.4.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.6.2"
+  }
+}
