@@ -9,8 +9,10 @@ export class App extends React.Component<{}, {}> {
   render() {
     return <div className="rs-app">
       <Header/>
-      <Nav/>
-      <Content/>
+      <section id='rs-main'>
+        <Nav/>
+        <Content/>
+      </section>
       <Footer/>
     </div>;
   }

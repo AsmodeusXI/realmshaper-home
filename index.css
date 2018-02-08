@@ -3,39 +3,25 @@ body {
 }
 
 header {
-  z-index: 2;
   font-size: 24px;
-  top: 0;
-  left: 0;
-  height: 10%;
   border: 1px solid #333333;
   background-color: #DDDDDD;
 }
 
+#rs-main {
+  display: flex;
+  align-content: center;
+}
+
 nav {
-  position: fixed;
-  z-index: 1;
-  width: 10%;
-  height: 100%;
-  overflow-x: hidden;
   border: 1px solid #333333;
 }
 
 main {
-  position: fixed;
-  left: 10%;
-  width: 100%;
-  height: 100%;
   border: 1px solid #333333;
 }
 
 footer {
-  position: fixed;
-  z-index: 2;
-  height: 10%;
-  width: 100%;
-  left: 0;
-  bottom: 0;
   text-align: center;
   color: #666666;
   font-size: 12px;
