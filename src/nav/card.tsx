@@ -5,9 +5,9 @@ export class Card extends React.Component<{}, {}> {
     id?: string,
     name?: string
   }
-  
+
   render() {
-    return <div id={this.props.id}>
+    return <div id={this.props.id} className="nav-card">
       {this.props.name}
     </div>;
   }

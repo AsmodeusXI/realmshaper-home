@@ -1,0 +1,21 @@
+// GENERAL
+body {
+  margin: 0px;
+}
+
+// DEFAULT STYLE
+.default {
+  #rs-main {
+    display: flex;
+    align-content: center;
+
+    main {
+      flex: 5;
+      width: 100%;
+    }
+
+    nav {
+      flex: 1;
+    }
+  }
+}
