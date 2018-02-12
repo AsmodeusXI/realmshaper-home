@@ -1,18 +1,20 @@
 # Will uncomment when ready.
 #
-# language: node_js
-# node_js:
-# - '5.1'
-# branches:
-#   only: master
-# install:
-# - npm install
-# before_script:
-# - echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-# deploy:
-#   provider: s3
-#   bucket: "realmshaper.com"
-#   skip_cleanup: true
-#   access_key_id: AKIAJ2ZNV3EVB5C5FX2A
-#   secret_access_key:
-#     secure: vJzlKQKaE0litQGX8YpEUVfx14c23DbX5NxI2SZX7fFtf+xeiYYCeFMOIslaLVWLDT97CuCRQUvF/FAbrtitHuCO5cQuQwQNGuDuPRnsv6n0WN/sE9wjDWoX7aYnBVICVQ9RUuC3yOEAaVjtDi+gFvxWutD7Oe5t7ZtSUS6maD6JKgm2lujzQ2uffTAi/t8e/07R04H4WYOwo3AXo5SGR3KN+qa97mDzpz2BXc/82X1nAbpJObX2gKk76jvrePC8N1Cl+fA1iQ8ix8g3Jn5Z6d8lUyHCrcXAuVF5CNFXILYdPO5Bqa2OQr5JebpNRNdCmrvzAHdpg/b3NXW7dLtrMnfNPBbz3C+vy/DeZSZKJkChLDV3hC76DQJPxdBRp3pj69Lh2/DSjMdlbL02JZtyPDkeY8mOuPi9YoULHprVngkla+j5CFQN8dNmGntWaZlU0FgPg06fZ42l2EcyQ7dOxYXrquFPKyd+H8reI3MdPsdklfoFFWEXb4XRK6NH3WSn1++oygoFfEQ5sZgDL9kEjXBTx/yvr+rkoQRtQYsWlyyM4uksYgw8Fd2qvAnRWtBGFfoirSM2og/29Iu9TfrjtAo4mOkX1ityZcHXjX2EbDESWvYEwO4lTAOPHCc3IRsOERPAGgZYdbkABG/u53E1wjFeGyluzGiDr6qJQhIvD+8=
+language: node_js
+node_js:
+  "node"
+branches:
+  only: master
+install:
+- npm install
+before_script:
+- echo -e "Host $HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+script: npm run build:prod
+deploy:
+  provider: s3
+  bucket: "realmshaper.com"
+  skip_cleanup: true
+  access_key_id: AKIAJ2ZNV3EVB5C5FX2A
+  secret_access_key:
+    secure: vJzlKQKaE0litQGX8YpEUVfx14c23DbX5NxI2SZX7fFtf+xeiYYCeFMOIslaLVWLDT97CuCRQUvF/FAbrtitHuCO5cQuQwQNGuDuPRnsv6n0WN/sE9wjDWoX7aYnBVICVQ9RUuC3yOEAaVjtDi+gFvxWutD7Oe5t7ZtSUS6maD6JKgm2lujzQ2uffTAi/t8e/07R04H4WYOwo3AXo5SGR3KN+qa97mDzpz2BXc/82X1nAbpJObX2gKk76jvrePC8N1Cl+fA1iQ8ix8g3Jn5Z6d8lUyHCrcXAuVF5CNFXILYdPO5Bqa2OQr5JebpNRNdCmrvzAHdpg/b3NXW7dLtrMnfNPBbz3C+vy/DeZSZKJkChLDV3hC76DQJPxdBRp3pj69Lh2/DSjMdlbL02JZtyPDkeY8mOuPi9YoULHprVngkla+j5CFQN8dNmGntWaZlU0FgPg06fZ42l2EcyQ7dOxYXrquFPKyd+H8reI3MdPsdklfoFFWEXb4XRK6NH3WSn1++oygoFfEQ5sZgDL9kEjXBTx/yvr+rkoQRtQYsWlyyM4uksYgw8Fd2qvAnRWtBGFfoirSM2og/29Iu9TfrjtAo4mOkX1ityZcHXjX2EbDESWvYEwO4lTAOPHCc3IRsOERPAGgZYdbkABG/u53E1wjFeGyluzGiDr6qJQhIvD+8=
+  local_dir: build

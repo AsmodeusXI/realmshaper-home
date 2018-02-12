@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "My new homepage!",
   "scripts": {
-    "start": "http-server . -a 127.0.0.1 -p 8080",
-    "build": "webpack",
+    "prebuild:prod": "rm -rf build && rm -rf dist",
+    "build:prod": "webpack",
+    "postbuild:prod": "mkdir build && cp -R dist build/dist && cp index.html build/index.html",
     "start:dev": "webpack-dev-server"
   },
   "repository": {
@@ -20,18 +21,18 @@
   "dependencies": {
     "@types/react": "^16.0.34",
     "@types/react-dom": "^16.0.3",
-    "awesome-typescript-loader": "^3.4.1",
-    "css-loader": "^0.28.9",
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "sass-loader": "^6.0.6",
-    "source-map-loader": "^0.2.3",
-    "style-loader": "^0.20.1",
     "typescript": "^2.6.2"
   },
   "devDependencies": {
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.10.1"
+    "webpack-dev-server": "^2.10.1",
+    "sass-loader": "^6.0.6",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.20.1",
+    "awesome-typescript-loader": "^3.4.1",
+    "css-loader": "^0.28.9"
   }
 }
