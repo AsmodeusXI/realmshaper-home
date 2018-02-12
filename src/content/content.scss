@@ -1,5 +1,8 @@
 .default {
-  p {
-    padding: 0px 10px 0px 10px
+  main {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid $moderate-gray;
+    border-radius: 2px;
   }
 }

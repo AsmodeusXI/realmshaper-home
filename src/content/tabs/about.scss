@@ -1,0 +1,16 @@
+.default {
+  #bio-tab {
+    p:first-child {
+      margin-top: 0px;
+    }
+
+    [data-prefix="fab"] {
+      margin-right: 5px;
+      color: black;
+
+      &:hover {
+        color: $highlight-blue;
+      }
+    }
+  }
+}

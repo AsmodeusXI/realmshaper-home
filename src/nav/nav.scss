@@ -1,5 +1,3 @@
-$lightest-gray: #EEEEEE;
-
 .default {
   nav {
     .nav-card {
@@ -10,8 +8,13 @@ $lightest-gray: #EEEEEE;
 
       &:hover {
         cursor: pointer;
-        color: blue;
+        color: white;
+        background-color: $highlight-blue;
       }
+    }
+
+    .selected {
+      background-color: $selected-green;
     }
   }
 }

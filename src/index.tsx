@@ -4,6 +4,6 @@ import * as ReactDOM from "react-dom";
 import { App } from "./app";
 
 ReactDOM.render(
-  <App />,
+  <App tab="about"/>,
   document.getElementById("root")
 );

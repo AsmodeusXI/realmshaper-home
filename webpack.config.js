@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
   entry: "./src/index.tsx",
   output: {
@@ -22,11 +24,23 @@ module.exports = {
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
 
       // SCSS
-      { test: /\.scss$/, use: [
-        { loader: "style-loader" },
-        { loader: "css-loader", options: { sourceMap: true } },
-        { loader: "sass-loader", options: { sourceMap: true } }
-      ]}
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader", options: { sourceMap: true } },
+          {
+            loader: "sass-loader",
+            options: {
+              data: '@import "_variables";',
+              sourceMap: true,
+              includePaths: [
+                path.resolve(__dirname, 'src')
+              ]
+            }
+          }
+        ]
+      }
     ]
   },
 
