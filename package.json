@@ -1,11 +1,13 @@
 {
   "name": "realmshaper-home",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "My new homepage!",
   "scripts": {
     "prebuild:prod": "rm -rf build && rm -rf dist",
     "build:prod": "webpack",
-    "postbuild:prod": "mkdir build && cp -R dist build/dist && cp index.html build/index.html",
+    "move:index": "mkdir build && cp -R dist build/dist && cp index.html build/index.html",
+    "move:favicon": "cp img/favicon.ico build/favicon.ico",
+    "postbuild:prod": "npm run move:index && npm run move:favicon",
     "start:dev": "webpack-dev-server"
   },
   "repository": {
