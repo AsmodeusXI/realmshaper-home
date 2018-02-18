@@ -1,0 +1,67 @@
+.default {
+  #name-gen-tab {
+    #name-gen-about {}
+
+    #name-generators {
+      display: flex;
+      align-items: center;
+
+      .name-container {
+        flex: 1;
+        margin: 10px;
+
+        .gen-button {
+          margin: 5px;
+          padding: 5px;
+          text-align: center;
+          font-weight: bold;
+          border: 3px solid;
+          border-radius: 5px;
+          user-select: none;
+          cursor: default;
+
+          &.elf {
+            color: $med-turq;
+            border-color: $med-turq;
+
+            &:hover {
+              background-color: $med-turq-alpha;
+            }
+          }
+
+          &.human {
+            color: $pineapple;
+            border-color: $pineapple;
+
+            &:hover {
+              background-color: $pineapple-alpha;
+            }
+          }
+        }
+
+        ul {
+          list-style: none;
+          padding: 0px;
+
+          li {
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 18px;
+
+            &.elf {
+              color: white;
+              background-color: $med-turq;
+            }
+
+            &.human {
+              color: white;
+              background-color: $pineapple;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -19,5 +19,19 @@ body {
     nav {
       flex: 1;
     }
+
+    a {
+      &:hover {
+        color: $lapis-lazuli;
+      }
+    }
+
+    .about-section {
+      h2 {
+        margin: 0px;
+      }
+
+      margin: 10px;
+    }
   }
 }

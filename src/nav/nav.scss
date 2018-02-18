@@ -9,12 +9,12 @@
       &:hover {
         cursor: pointer;
         color: white;
-        background-color: $highlight-blue;
+        background-color: $lapis-lazuli;
       }
     }
 
     .selected {
-      background-color: $selected-green;
+      background-color: $pale-green;
     }
   }
 }

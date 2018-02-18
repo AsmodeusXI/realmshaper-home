@@ -4,6 +4,8 @@ import { About } from "./tabs/about";
 import { Twitch } from "./tabs/twitch";
 import { NameGen } from "./tabs/namegen";
 
+import { GeneratorMain } from "name-maker";
+
 import './content.scss';
 
 interface ContentProps {
@@ -20,7 +22,7 @@ export class Content extends React.Component<{}, {}> {
       case "twitch":
         return <Twitch />;
       case "name-gen":
-        return <NameGen />;
+        return <NameGen cultures={GeneratorMain.getAvailableCultures()}/>;
       default:
         throw new Error("Tab ID missing.");
     }
