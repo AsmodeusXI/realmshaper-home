@@ -3,6 +3,7 @@ import * as React from "react";
 import { About } from "./tabs/about";
 import { Twitch } from "./tabs/twitch";
 import { NameGen } from "./tabs/namegen";
+import { FLCCombat } from "./tabs/flc-combat";
 
 import { GeneratorMain } from "name-maker";
 
@@ -23,6 +24,8 @@ export class Content extends React.Component<{}, {}> {
         return <Twitch />;
       case "name-gen":
         return <NameGen cultures={GeneratorMain.getAvailableCultures()}/>;
+      case "flc-combat":
+        return <FLCCombat />
       default:
         throw new Error("Tab ID missing.");
     }
