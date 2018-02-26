@@ -1,14 +1,71 @@
 import * as React from "react";
+import * as _ from "lodash";
 
 import './flc-combat.scss';
 
-class CombatTurn extends React.Component<{}, {}> {
+interface CombatTurnProps {
+  participants: {}
+}
+
+class CombatTurn extends React.Component<CombatTurnProps, {}> {
+  constructor(props: CombatTurnProps) {
+    super(props);
+  }
+
   render() {
-    return (<li>
-      <div>
-        Card
+    const participants: Array<JSX.Element> = [];
+    _.forEach(this.props.participants, (participant) => {
+      participants.push(<div className="turn-participant">{participant.name} | {participant.hp} | {participant.fp}</div>);
+    })
+    return (
+      <li>{participants}</li>
+    );
+  }
+}
+
+interface NewParticipantProps {
+  participantId: number,
+  update: Function
+}
+
+interface NewParticipantState {
+  id: number,
+  name: string,
+  level: number
+}
+
+class NewParticipant extends React.Component<NewParticipantProps, NewParticipantState> {
+  constructor(props: NewParticipantProps) {
+    super(props);
+    this.state = {
+      id: this.props.participantId,
+      name: "",
+      level: 1
+    }
+    this.changeName = this.changeName.bind(this);
+    this.changeLevel = this.changeLevel.bind(this);
+  }
+
+  changeName(event: any) {
+    this.setState({ name: event.target.value });
+    this.props.update(this.state);
+  }
+
+  changeLevel(event: any) {
+    let newLevel = parseInt(event.target.value);
+    if (newLevel < 1) newLevel = 1;
+    if (newLevel > 20) newLevel = 20;
+    this.setState({ level: newLevel });
+    this.props.update(this.state);
+  }
+
+  render() {
+    return (
+      <div className="new-participant">
+        Name: <input type="text" name="new-name" value={this.state.name} onChange={this.changeName} onBlur={this.changeName} />
+        Level: <input type="number" name="new-level" value={this.state.level} onChange={this.changeLevel} onBlur={this.changeLevel} />
       </div>
-    </li>);
+    )
   }
 }
 
@@ -16,16 +73,43 @@ interface SetupCombatProps {
   startCombat?: Function
 }
 
-class SetupCombat extends React.Component<SetupCombatProps, {}> {
+interface SetupCombatState {
+  participants: {
+    [key: string]: any
+  }
+}
+
+class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
   constructor(props: SetupCombatProps) {
     super(props);
+    this.state = {
+      participants: {}
+    }
+  }
+
+  updateParticipant(newParticipantState: NewParticipantState) {
+    const participantData = {
+      id: newParticipantState.id,
+      name: newParticipantState.name,
+      hp: (newParticipantState.level * 52),
+      fp: 50
+    };
+    this.setState((prevState, props) => {
+      const updatedParticipants = prevState.participants;
+      updatedParticipants[participantData.id] = participantData;
+      return { participants: updatedParticipants }
+    });
   }
 
   render() {
+    const onClick = this.props.startCombat.bind(this, this.state.participants);
     return (
       <section id="combat-setup">
         Combat Setup
-        <button onClick={(e) => this.props.startCombat()}>Start Combat</button>
+        <NewParticipant
+          participantId={Date.now()}
+          update={this.updateParticipant.bind(this)}/>
+        <button onClick={onClick}>Start Combat</button>
       </section>
     );
   }
@@ -35,19 +119,25 @@ interface FLCCombatState {
   startComponent?: JSX.Element,
   turnComponents?: Array<JSX.Element>,
   addTurnButton?: JSX.Element,
-  participants?: Array<any>
+  participants?: {
+    [key: string]: any
+  }
 }
 
 export class FLCCombat extends React.Component<{}, FLCCombatState> {
   state: FLCCombatState;
 
   addCombatTurn() {
-    this.setState((prevState: FLCCombatState, props) => ({
-      turnComponents: prevState.turnComponents.concat(<CombatTurn />)
-    }));
+    this.setState((prevState: FLCCombatState, props) => {
+      return {
+        turnComponents: prevState.turnComponents.concat(
+          <CombatTurn participants={prevState.participants}/>
+        )
+      }
+    });
   }
 
-  startCombat(participants: Array<any>) {
+  startCombat(participants: { [key: string]: any }) {
     this.setState({
       startComponent: null,
       addTurnButton: <button
@@ -73,7 +163,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
       </button>,
       turnComponents: [],
       addTurnButton: null,
-      participants: []
+      participants: {}
     };
   }
 

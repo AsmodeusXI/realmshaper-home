@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/AsmodeusXI/realmshaper-home#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.104",
     "@types/react": "^16.0.34",
     "@types/react-dom": "^16.0.3",
+    "lodash": "^4.17.5",
     "name-maker": "^1.0.1",
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
