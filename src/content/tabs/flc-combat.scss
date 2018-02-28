@@ -2,6 +2,19 @@
   #flc-combat-tab {
     #flc-combat-container {
       margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+
+      .new-participant {
+        padding: 10px;
+        border: 1px solid $slate-gray;
+      }
+
+      #flc-combat-setup-area {
+        display: flex;
+        align-content: center;
+      }
     }
   }
 }

@@ -61,10 +61,10 @@ class NewParticipant extends React.Component<NewParticipantProps, NewParticipant
 
   render() {
     return (
-      <div className="new-participant">
-        Name: <input type="text" name="new-name" value={this.state.name} onChange={this.changeName} onBlur={this.changeName} />
-        Level: <input type="number" name="new-level" value={this.state.level} onChange={this.changeLevel} onBlur={this.changeLevel} />
-      </div>
+      <section className="new-participant">
+        <div>Name: <input type="text" name="new-name" value={this.state.name} onChange={this.changeName} onBlur={this.changeName} /></div>
+        <div>Level: <input type="number" name="new-level" value={this.state.level} onChange={this.changeLevel} onBlur={this.changeLevel} /></div>
+      </section>
     )
   }
 }
@@ -142,9 +142,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
       startComponent: null,
       addTurnButton: <button
         id='add-turn-button'
-        onClick={this.addCombatTurn.bind(this)}>
-          Add Turn
-        </button>,
+        onClick={this.addCombatTurn.bind(this)}>Add Turn</button>,
       participants: participants
     });
     this.addCombatTurn();
@@ -158,9 +156,9 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
 
   getDefaultState(): FLCCombatState {
     return {
-      startComponent: <button onClick={this.initializeCombat.bind(this)}>
-        Create New Combat
-      </button>,
+      startComponent: <button
+        onClick={this.initializeCombat.bind(this)}
+        className='create-button'>Create New Combat</button>,
       turnComponents: [],
       addTurnButton: null,
       participants: {}
@@ -190,14 +188,14 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
           </p>
         </section>
         <section id="flc-combat-container">
-          {this.state.startComponent}
+          <div id="flc-combat-setup-area">
+            {this.state.startComponent}
+            <button onClick={() => this.resetCombat()}>Reset Combat</button>
+          </div>
           <ol>
             {this.state.turnComponents}
           </ol>
           {this.state.addTurnButton}
-          <button onClick={() => this.resetCombat()}>
-            Reset Combat
-          </button>
         </section>
       </article>
     );
