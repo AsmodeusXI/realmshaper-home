@@ -187,11 +187,11 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
             this tool.
           </p>
         </section>
+        <div id="flc-combat-setup-area">
+          {this.state.startComponent}
+          <button onClick={() => this.resetCombat()}>Reset Combat</button>
+        </div>
         <section id="flc-combat-container">
-          <div id="flc-combat-setup-area">
-            {this.state.startComponent}
-            <button onClick={() => this.resetCombat()}>Reset Combat</button>
-          </div>
           <ol>
             {this.state.turnComponents}
           </ol>
