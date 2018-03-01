@@ -126,6 +126,7 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
       hp: (newParticipantState.level * 52),
       fp: 50
     };
+    if (_.trim(participantData.name) === '') return;
     this.setState((prevState, props) => {
       const updatedParticipants = prevState.participants;
       updatedParticipants[participantData.id] = participantData;
@@ -137,17 +138,14 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
     const onClick = this.props.startCombat.bind(this, this.state.participants);
     return (
       <section id="flc-combat-setup">
-        <div id="combat-setup-controls">
-          <div className="bold">Combat Setup</div>
-          <div id="start-combat-button">
-            <button onClick={onClick}>Start Combat</button>
-          </div>
-        </div>
         <div id="participant-container">
           {this.state.participantSetupElements}
           <button id="add-combat-participant" onClick={this.addParticipant.bind(this)}>
             +
           </button>
+        </div>
+        <div id="combat-setup-controls">
+          <button onClick={onClick}>Start Combat</button>
         </div>
       </section>
     );
@@ -228,15 +226,9 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
             this tool.
           </p>
         </section>
-        <div id="flc-combat-setup-area">
-          {this.state.startComponent}
-          <button onClick={() => this.resetCombat()}>Reset Combat</button>
-        </div>
         <section id="flc-combat-container">
-          <div id="flc-combat-controls">
-            {this.state.createComponent}
-            <button className="pull-right" onClick={() => this.resetCombat()}>Reset Combat</button>
-          </div>
+          {this.state.createComponent}
+          <button onClick={() => this.resetCombat()}>Reset Combat</button>
           {this.state.startComponent}
           <ol>
             {this.state.turnComponents}
