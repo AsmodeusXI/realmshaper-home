@@ -62,8 +62,22 @@ class NewParticipant extends React.Component<NewParticipantProps, NewParticipant
   render() {
     return (
       <section className="new-participant">
-        <div>Name: <input type="text" name="new-name" value={this.state.name} onChange={this.changeName} onBlur={this.changeName} /></div>
-        <div>Level: <input type="number" name="new-level" value={this.state.level} onChange={this.changeLevel} onBlur={this.changeLevel} /></div>
+        <div className="participant-field">
+          <div className='col-4 participant-label'>Name:</div>
+          <input type="text" name="new-name"
+            className='col-6'
+            value={this.state.name}
+            onChange={this.changeName}
+            onBlur={this.changeName} />
+        </div>
+        <div className="participant-field">
+          <div className='col-4 participant-label'>Level:</div>
+          <input type="number" name="new-level"
+            className='col-6'
+            value={this.state.level}
+            onChange={this.changeLevel}
+            onBlur={this.changeLevel} />
+        </div>
       </section>
     )
   }
@@ -76,15 +90,33 @@ interface SetupCombatProps {
 interface SetupCombatState {
   participants: {
     [key: string]: any
-  }
+  },
+  participantSetupElements: Array<JSX.Element>
 }
 
 class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
   constructor(props: SetupCombatProps) {
     super(props);
+    this.getParticipantElement.bind(this);
     this.state = {
-      participants: {}
+      participants: {},
+      participantSetupElements: [this.getParticipantElement()]
     }
+  }
+
+  getParticipantElement(): JSX.Element {
+    return <NewParticipant participantId={Date.now()}
+              update={this.updateParticipant.bind(this)}/>
+  }
+
+  addParticipant(): void {
+    this.setState((prevState, props) => {
+      return {
+        participantSetupElements: prevState.participantSetupElements.concat(
+          this.getParticipantElement()
+        )
+      }
+    });
   }
 
   updateParticipant(newParticipantState: NewParticipantState) {
@@ -104,18 +136,26 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
   render() {
     const onClick = this.props.startCombat.bind(this, this.state.participants);
     return (
-      <section id="combat-setup">
-        Combat Setup
-        <NewParticipant
-          participantId={Date.now()}
-          update={this.updateParticipant.bind(this)}/>
-        <button onClick={onClick}>Start Combat</button>
+      <section id="flc-combat-setup">
+        <div id="combat-setup-controls">
+          <div className="bold">Combat Setup</div>
+          <div id="start-combat-button">
+            <button onClick={onClick}>Start Combat</button>
+          </div>
+        </div>
+        <div id="participant-container">
+          {this.state.participantSetupElements}
+          <button id="add-combat-participant" onClick={this.addParticipant.bind(this)}>
+            +
+          </button>
+        </div>
       </section>
     );
   }
 }
 
 interface FLCCombatState {
+  createComponent?: JSX.Element,
   startComponent?: JSX.Element,
   turnComponents?: Array<JSX.Element>,
   addTurnButton?: JSX.Element,
@@ -150,15 +190,16 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
 
   initializeCombat() {
     this.setState({
+      createComponent: null,
       startComponent: <SetupCombat startCombat={this.startCombat.bind(this)}/>
     });
   }
 
   getDefaultState(): FLCCombatState {
     return {
-      startComponent: <button
-        onClick={this.initializeCombat.bind(this)}
-        className='create-button'>Create New Combat</button>,
+      createComponent: <button className="pull-left"
+        onClick={this.initializeCombat.bind(this)}>Create New Combat</button>,
+      startComponent: null,
       turnComponents: [],
       addTurnButton: null,
       participants: {}
@@ -192,6 +233,11 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
           <button onClick={() => this.resetCombat()}>Reset Combat</button>
         </div>
         <section id="flc-combat-container">
+          <div id="flc-combat-controls">
+            {this.state.createComponent}
+            <button className="pull-right" onClick={() => this.resetCombat()}>Reset Combat</button>
+          </div>
+          {this.state.startComponent}
           <ol>
             {this.state.turnComponents}
           </ol>
