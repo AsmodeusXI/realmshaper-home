@@ -50,8 +50,16 @@ body {
       width: 40%;
     }
 
-    col-6 {
+    .col-6 {
       width: 60%;
+    }
+
+    .col-2 {
+      width: 20%;
+    }
+
+    .red-bkg {
+      background-color: #7C071C;
     }
 
     button {
