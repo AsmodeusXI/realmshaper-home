@@ -19,8 +19,7 @@ export class Twitch extends React.Component<{}, {}> {
         </p>
       </section>
       <section id="twitch-container" className='center-viewer'>
-        <ReactPlayer url='https://www.twitch.tv/djforeclosure'
-          height='720px' width='1280px'/>
+        <ReactPlayer url='https://www.twitch.tv/djforeclosure' />
       </section>
     </article>;
   }
