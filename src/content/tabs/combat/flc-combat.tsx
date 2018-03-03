@@ -181,11 +181,7 @@ class CombatArea extends React.Component<CombatAreaProps, {}> {
   }
 
   render() {
-    return (
-      <section id="flc-combat-turns">
-        <ol>{this.props.turnComponents}</ol>
-      </section>
-    )
+    return <section id="flc-combat-turns"><ol>{this.props.turnComponents}</ol></section>;
   }
 }
 
@@ -230,7 +226,9 @@ class NewParticipant extends React.Component<NewParticipantProps, NewParticipant
       <section className="new-participant">
         <div className="participant-field">
           <div className='col-4 participant-label'>Name:</div>
-          <input type="text" name="new-name"
+          <input
+            type="text"
+            name="new-name"
             className='col-6'
             value={this.state.name}
             onChange={this.changeName}
@@ -238,7 +236,9 @@ class NewParticipant extends React.Component<NewParticipantProps, NewParticipant
         </div>
         <div className="participant-field">
           <div className='col-4 participant-label'>Level:</div>
-          <input type="number" name="new-level"
+          <input
+            type="number"
+            name="new-level"
             className='col-6'
             value={this.state.level}
             onChange={this.changeLevel}
@@ -271,8 +271,7 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
   }
 
   getParticipantElement(): JSX.Element {
-    return <NewParticipant participantId={Date.now()}
-              update={this.updateParticipant.bind(this)}/>
+    return <NewParticipant participantId={Date.now()} update={this.updateParticipant.bind(this)}/>;
   }
 
   addParticipant(): void {
@@ -312,9 +311,7 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
       <section id="flc-combat-setup">
         <div id="participant-container">
           {this.state.participantSetupElements}
-          <button id="add-combat-participant" onClick={this.addParticipant.bind(this)}>
-            +
-          </button>
+          <button id="add-combat-participant" onClick={this.addParticipant.bind(this)}>+</button>
         </div>
         <button onClick={onClick}>Start Combat</button>
       </section>
