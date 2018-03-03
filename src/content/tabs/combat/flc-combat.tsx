@@ -35,6 +35,20 @@ interface CombatParticipantChangeState {
   conditionDelta: Array<CombatCondition>
 }
 
+class ConditionDisplay extends React.Component<CombatCondition, {}> {
+  constructor(props: CombatCondition) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="condition">
+        {this.props.name}&nbsp;{this.props.duration}
+      </div>
+    )
+  }
+}
+
 class CombatParticipant extends React.Component<CombatParticipantProps, CombatParticipantChangeState> {
   constructor(props: CombatParticipantProps) {
     super(props);
@@ -88,53 +102,86 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
     if (this.props.conditions.length > 0) {
       const conditionElements: Array<JSX.Element> = [];
       _.forEach(this.props.conditions, (condition) => {
-        conditionElements.push(<div>{condition.name} | {condition.duration}</div>);
+        conditionElements.push(<ConditionDisplay name={condition.name} duration={condition.duration} />);
       });
       conditionTracker = <div>{conditionElements}</div>
     }
-    const hpDeltas = this.state.hpDelta.map((hpCng) =>  <p>{hpCng}</p>);
-    const fpDeltas = this.state.fpDelta.map((fpCng) => <p>{fpCng}</p>);
-    const conditionDeltas = this.state.conditionDelta.map((condChg) => <p>{condChg.name} | {condChg.duration}</p>);
+    const hpDeltas = this.state.hpDelta.map((hpChg) => {
+      let hpDisplay;
+      if (hpChg > 0) {
+        hpDisplay = ` + ${hpChg}`;
+      } else {
+        hpDisplay = ` - ${Math.abs(hpChg)}`
+      }
+      return <span>{hpDisplay}</span>;
+    });
+    const fpDeltas = this.state.fpDelta.map((fpChg) => {
+      let fpDisplay;
+      if (fpChg > 0) {
+        fpDisplay = ` + ${fpChg}`;
+      } else {
+        fpDisplay = ` - ${Math.abs(fpChg)}`;
+      }
+      return <span>{fpDisplay}</span>;
+    });
+    const conditionDeltas = this.state.conditionDelta.map((condChg) => {
+      return <ConditionDisplay name={condChg.name} duration={condChg.duration} />;
+    });
     return (
       <div className="turn-participant">
-        <div className="col-1">{this.props.name}</div>
-        <div className="col-2">
-          {this.props.hp}
-          {hpDeltas}
-          <input type="text"
-            name="hpChange"
-            value={this.state.hpChange}
-            onChange={this.changeField}
-            onBlur={this.changeField}
-            />
+        <div className="col-1 participant-name">{this.props.name}</div>
+        <div className="col-2 participant-hp">
+          <div className="part-form">
+            <div>
+              {this.props.hp}{hpDeltas}
+            </div>
+            <div>
+              <input type="text"
+                name="hpChange"
+                value={this.state.hpChange}
+                onChange={this.changeField}
+                onBlur={this.changeField}
+                />
+            </div>
+          </div>
         </div>
-        <div className="col-2">
-          {this.props.fp}
-          {fpDeltas}
-          <input type="text"
-            name="fpChange"
-            value={this.state.fpChange}
-            onChange={this.changeField}
-            onBlur={this.changeField}
-            />
+        <div className="col-2 participant-fp">
+          <div className="part-form">
+            <div>
+              {this.props.fp}{fpDeltas}
+            </div>
+            <div>
+              <input type="text"
+                name="fpChange"
+                value={this.state.fpChange}
+                onChange={this.changeField}
+                onBlur={this.changeField}
+                />
+            </div>
+          </div>
         </div>
-        <div className="col-4">
-          {conditionTracker}
-          {conditionDeltas}
-          <input type="text"
-            name="conditionNameChange"
-            value={this.state.conditionNameChange}
-            onChange={this.changeField}
-            onBlur={this.changeField}
-            />
-          (<input type="text"
-            name="conditionDurationChange"
-            value={this.state.conditionDurationChange}
-            onChange={this.changeField}
-            onBlur={this.changeField}
-            />)
+        <div className="col-4 participant-condition">
+          <div className="part-form">
+            <div className="condition-container">
+              {conditionTracker}{conditionDeltas}
+            </div>
+            <div>
+              <input type="text"
+                name="conditionNameChange"
+                value={this.state.conditionNameChange}
+                onChange={this.changeField}
+                onBlur={this.changeField}
+                />
+              (<input type="text"
+                name="conditionDurationChange"
+                value={this.state.conditionDurationChange}
+                onChange={this.changeField}
+                onBlur={this.changeField}
+                />)
+            </div>
+          </div>
         </div>
-        <div className="col-1">
+        <div className="col-1 participant-update">
           <button onClick={this.updateDelta}>Update</button>
         </div>
       </div>
