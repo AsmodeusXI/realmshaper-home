@@ -98,13 +98,11 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
   }
 
   render() {
-    let conditionTracker: JSX.Element = null;
+    let conditionElements: Array<JSX.Element> = [];
     if (this.props.conditions.length > 0) {
-      const conditionElements: Array<JSX.Element> = [];
-      _.forEach(this.props.conditions, (condition) => {
-        conditionElements.push(<ConditionDisplay name={condition.name} duration={condition.duration} />);
+      conditionElements = this.props.conditions.map((cond) => {
+        return <ConditionDisplay name={cond.name} duration={cond.duration} />;
       });
-      conditionTracker = <div>{conditionElements}</div>
     }
     const hpDeltas = this.state.hpDelta.map((hpChg) => {
       let hpDisplay;
@@ -127,6 +125,7 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
     const conditionDeltas = this.state.conditionDelta.map((condChg) => {
       return <ConditionDisplay name={condChg.name} duration={condChg.duration} />;
     });
+    conditionElements = conditionElements.concat(conditionDeltas);
     return (
       <div className="turn-participant">
         <div className="col-1 participant-name">{this.props.name}</div>
@@ -163,7 +162,7 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
         <div className="col-4 participant-condition">
           <div className="part-form">
             <div className="condition-container">
-              {conditionTracker}{conditionDeltas}
+              {conditionElements}
             </div>
             <div>
               <input type="text"
