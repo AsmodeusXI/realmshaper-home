@@ -4,7 +4,171 @@ import * as _ from "lodash";
 import './flc-combat.scss';
 
 interface CombatTurnProps {
-  participants: {}
+  participants: {},
+  addParticipantDelta: Function
+}
+
+interface CombatParticipantProps {
+  id: number,
+  name: string,
+  hp: number,
+  fp: number,
+  conditions: Array<{
+    name: string,
+    duration: number
+  }>,
+  addDelta: Function
+}
+
+interface CombatParticipantChangeState {
+  hpChange: string,
+  fpChange: string,
+  conditionChange: {
+    name: string,
+    duration: string
+  },
+  hpDelta: Array<number>,
+  fpDelta: Array<number>,
+  conditionDelta: Array<{
+    name: string,
+    duration: number
+  }>
+}
+
+class CombatParticipant extends React.Component<CombatParticipantProps, CombatParticipantChangeState> {
+  constructor(props: CombatParticipantProps) {
+    super(props);
+    this.state = {
+      hpChange: "",
+      fpChange: "",
+      conditionChange: {
+        name: "",
+        duration: ""
+      },
+      hpDelta: [],
+      fpDelta: [],
+      conditionDelta: []
+    };
+    this.changeHP = this.changeHP.bind(this);
+    this.changeFP = this.changeFP.bind(this);
+    this.changeConditionName = this.changeConditionName.bind(this);
+    this.changeConditionDuration = this.changeConditionDuration.bind(this);
+    this.updateDelta = this.updateDelta.bind(this);
+  }
+
+  changeHP(event: any) {
+    this.setState({ hpChange: event.target.value });
+  }
+
+  changeFP(event: any) {
+    this.setState({ fpChange: event.target.value });
+  }
+
+  changeConditionName(event: any) {
+    const conditionName = event.target.value;
+    this.setState((prevState, props) => {
+      const updateCondition = prevState.conditionChange;
+      updateCondition.name = conditionName;
+      return {
+        conditionChange: updateCondition
+      }
+    });
+  }
+
+  changeConditionDuration(event: any) {
+    const conditionDuration = event.target.value;
+    this.setState((prevState, props) => {
+      const updateCondition = prevState.conditionChange;
+      updateCondition.duration = conditionDuration;
+      return {
+        conditionChange: updateCondition
+      }
+    });
+  }
+
+  updateDelta(): void {
+    const updateHP = parseInt(this.state.hpChange);
+    const updateFP = parseInt(this.state.fpChange);
+    const updateCondition = {
+      name: this.state.conditionChange.name,
+      duration: parseInt(this.state.conditionChange.duration)
+    };
+    this.props.addDelta(this.props.id, updateHP, updateFP, updateCondition);
+    this.setState((prevState, props) => {
+      const newHpDelta = isNaN(updateHP) ? prevState.hpDelta : [...prevState.hpDelta, updateHP];
+      const newFpDelta = isNaN(updateFP) ? prevState.fpDelta : [...prevState.fpDelta, updateFP];
+      const newConditionDelta = (_.isEmpty(updateCondition.name)) ?
+        prevState.conditionDelta :
+        [...prevState.conditionDelta, updateCondition];
+      return {
+        hpChange: "",
+        fpChange: "",
+        conditionChange: {
+          name: "",
+          duration: ""
+        },
+        hpDelta: newHpDelta,
+        fpDelta: newFpDelta,
+        conditionDelta: newConditionDelta
+      }
+    });
+  }
+
+  render() {
+    let conditionTracker: JSX.Element = null;
+    if (this.props.conditions.length > 0) {
+      const conditionElements: Array<JSX.Element> = [];
+      _.forEach(this.props.conditions, (condition) => {
+        conditionElements.push(<div>{condition.name} | {condition.duration}</div>);
+      });
+      conditionTracker = <div>{conditionElements}</div>
+    }
+    const hpDeltas = this.state.hpDelta.map((hpCng) =>  <p>{hpCng}</p>);
+    const fpDeltas = this.state.fpDelta.map((fpCng) => <p>{fpCng}</p>);
+    const conditionDeltas = this.state.conditionDelta.map((condChg) => {
+      return <p>{condChg.name} | {condChg.duration}</p>;
+    });
+    return (
+      <div className="turn-participant">
+        <div className="col-1">{this.props.name}</div>
+        <div className="col-2">
+          {this.props.hp}
+          {hpDeltas}
+          <input type="text"
+            value={this.state.hpChange}
+            onChange={this.changeHP}
+            onBlur={this.changeHP}
+            />
+        </div>
+        <div className="col-2">
+          {this.props.fp}
+          {fpDeltas}
+          <input type="text"
+            value={this.state.fpChange}
+            onChange={this.changeFP}
+            onBlur={this.changeFP}
+            />
+        </div>
+        <div className="col-4">
+          {conditionTracker}
+          {conditionDeltas}
+          <input type="text"
+            value={this.state.conditionChange.name}
+            onChange={this.changeConditionName}
+            onBlur={this.changeConditionName}
+            />
+          (<input type="text"
+            value={this.state.conditionChange.duration}
+            onChange={this.changeConditionDuration}
+            onBlur={this.changeConditionDuration}
+            />)
+        </div>
+        <div className="col-1">
+          <button onClick={this.updateDelta}>Update</button>
+        </div>
+      </div>
+    )
+  }
 }
 
 class CombatTurn extends React.Component<CombatTurnProps, {}> {
@@ -16,11 +180,13 @@ class CombatTurn extends React.Component<CombatTurnProps, {}> {
     const participants: Array<JSX.Element> = [];
     _.forEach(this.props.participants, (participant) => {
       participants.push(
-        <div className="turn-participant">
-          <div className="col-6">{participant.name}</div>
-          <div className="col-2">{participant.hp}</div>
-          <div className="col-2">{participant.fp}</div>
-        </div>
+        <CombatParticipant
+          id={participant.id}
+          name={participant.name}
+          hp={participant.hp}
+          fp={participant.fp}
+          conditions={participant.conditions}
+          addDelta={this.props.addParticipantDelta} />
       );
     });
     return (
@@ -111,9 +277,28 @@ interface SetupCombatProps {
   startCombat?: Function
 }
 
+interface CombatParticipantState {
+  id: number,
+  name: string,
+  hp: number,
+  fp: number,
+  conditions: Array<{
+    name: string,
+    duration: number
+  }>,
+  delta: {
+    hp: Array<number>,
+    fp: Array<number>,
+    conditions: Array<{
+      name: string,
+      duration: number
+    }>
+  }
+}
+
 interface SetupCombatState {
   participants: {
-    [key: string]: any
+    [key: string]: CombatParticipantState
   },
   participantSetupElements: Array<JSX.Element>
 }
@@ -137,18 +322,24 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
     this.setState((prevState, props) => {
       return {
         participantSetupElements: prevState.participantSetupElements.concat(
-          this.getParticipantElement()
+          [this.getParticipantElement()]
         )
       }
     });
   }
 
   updateParticipant(newParticipantState: NewParticipantState): void {
-    const participantData = {
+    const participantData: CombatParticipantState = {
       id: newParticipantState.id,
       name: newParticipantState.name,
       hp: (newParticipantState.level * 52),
-      fp: 50
+      fp: 50,
+      conditions: [],
+      delta: {
+        hp: [],
+        fp: [],
+        conditions: []
+      }
     };
     if (_.trim(participantData.name) === '') return;
     this.setState((prevState, props) => {
@@ -180,32 +371,92 @@ interface FLCCombatState {
   turnComponents?: Array<JSX.Element>,
   addTurnButton?: JSX.Element,
   participants?: {
-    [key: string]: any
+    [key: string]: CombatParticipantState
   }
 }
 
 export class FLCCombat extends React.Component<{}, FLCCombatState> {
   state: FLCCombatState;
 
-  addCombatTurn() {
+  addParticipantDelta(
+    id: string,
+    hpChange: number,
+    fpChange: number,
+    conditionChange: { name: string, duration: number }): void {
     this.setState((prevState: FLCCombatState, props) => {
+      const updatedParticipants = prevState.participants;
+      if (!isNaN(hpChange)) updatedParticipants[id].delta.hp.push(hpChange);
+      if (!isNaN(fpChange)) updatedParticipants[id].delta.fp.push(fpChange);
+      if (!_.isEmpty(conditionChange.name)) {
+        updatedParticipants[id].delta.conditions.push(conditionChange);
+      }
       return {
-        turnComponents: prevState.turnComponents.concat(
-          <CombatTurn participants={prevState.participants}/>
-        )
+        participants: updatedParticipants
       }
     });
   }
 
-  startCombat(participants: { [key: string]: any }) {
+  performTurnUpdate(participant: CombatParticipantState) {
+    let hpDelta = 0;
+    for (let i = 0; i < participant.delta.hp.length; i++) {
+      hpDelta = hpDelta + participant.delta.hp[i];
+    }
+    let fpDelta = 0;
+    for (let j = 0; j < participant.delta.fp.length; j++) {
+      fpDelta = fpDelta + participant.delta.fp[j];
+    }
+    let conditionsDelta: Array<{ name: string, duration: number }> = [];
+    _.forEach(participant.conditions.concat(participant.delta.conditions), (condDurChg) => {
+      const updatedCondition = {
+        name: condDurChg.name,
+        duration: (condDurChg.duration-1)
+      };
+      if (updatedCondition.duration > 0) {
+        conditionsDelta.push(updatedCondition);
+      }
+    });
+    this.setState((prevState, props) => {
+      const updatedParticipants = prevState.participants;
+      const partId = participant.id;
+      updatedParticipants[partId].hp += hpDelta;
+      updatedParticipants[partId].fp += fpDelta;
+      updatedParticipants[partId].conditions = conditionsDelta;
+      updatedParticipants[partId].delta = {
+        hp: [],
+        fp: [],
+        conditions: []
+      }
+      return {
+        participants: updatedParticipants
+      }
+    });
+  }
+
+  updateCombat(shouldPerformUpdate: boolean) {
+    if (shouldPerformUpdate) {
+      _.forEach(this.state.participants, (participant) => {
+        this.performTurnUpdate(participant);
+      });
+    }
+    this.setState((prevState: FLCCombatState, props) => {
+      return {
+        turnComponents: prevState.turnComponents.concat(<CombatTurn
+          participants={prevState.participants}
+          addParticipantDelta={this.addParticipantDelta.bind(this)}
+        />)
+      }
+    });
+  }
+
+  startCombat(participants: { [key: string]: CombatParticipantState }) {
     this.setState({
       startComponent: null,
       addTurnButton: <button
         id='add-turn-button'
-        onClick={this.addCombatTurn.bind(this)}>Add Turn</button>,
+        onClick={this.updateCombat.bind(this, true)}>Add Turn</button>,
       participants: participants
     });
-    this.addCombatTurn();
+    this.updateCombat(false);
   }
 
   initializeCombat() {
@@ -229,6 +480,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
   constructor(props: any) {
     super(props);
     this.state = this.getDefaultState();
+    this.updateCombat = this.updateCombat.bind(this);
   }
 
   resetCombat() {
