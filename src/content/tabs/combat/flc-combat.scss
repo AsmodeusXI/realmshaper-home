@@ -78,19 +78,19 @@
             margin: 2px 5px 2px 5px;
           }
         }
+      }
+    }
 
-        input {
-          margin-top: 5px;
-          text-align: center;
-          border: none;
-          border-bottom: 1px solid black;
+    input {
+      margin-top: 5px;
+      text-align: center;
+      border: none;
+      border-bottom: 1px solid black;
 
-          &:focus {
-            outline: none;
-            color: $lapis-lazuli;
-            border-bottom: 2px solid $lapis-lazuli;
-          }
-        }
+      &:focus {
+        outline: none;
+        color: $lapis-lazuli;
+        border-bottom: 2px solid $lapis-lazuli;
       }
     }
   }
