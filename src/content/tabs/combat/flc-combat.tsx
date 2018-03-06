@@ -190,7 +190,9 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
 
 interface CombatTurnProps {
   participants: {},
-  addParticipantDelta: Function
+  addParticipantDelta: Function,
+  turnId: number,
+  activeTurnId: number
 }
 
 class CombatTurn extends React.Component<CombatTurnProps, {}> {
@@ -199,6 +201,7 @@ class CombatTurn extends React.Component<CombatTurnProps, {}> {
   }
 
   render() {
+    const isActive = (this.props.turnId === this.props.activeTurnId) ? 'Active' : 'Inactive';
     const participants: Array<JSX.Element> = [];
     _.forEach(this.props.participants, (participant) => {
       participants.push(
@@ -212,7 +215,7 @@ class CombatTurn extends React.Component<CombatTurnProps, {}> {
       );
     });
     return (
-      <li>{participants}</li>
+      <li><span>{isActive}</span>{participants}</li>
     );
   }
 }
@@ -295,19 +298,19 @@ class NewParticipant extends React.Component<NewParticipantProps, NewParticipant
   }
 }
 
-interface SetupCombatProps {
+interface CombatSetupProps {
   startCombat?: Function
 }
 
-interface SetupCombatState {
+interface CombatSetupState {
   participants: {
     [key: string]: CombatParticipantState
   },
   participantSetupElements: Array<JSX.Element>
 }
 
-class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
-  constructor(props: SetupCombatProps) {
+class CombatSetup extends React.Component<CombatSetupProps, CombatSetupState> {
+  constructor(props: CombatSetupProps) {
     super(props);
     this.getParticipantElement.bind(this);
     this.state = {
@@ -366,13 +369,14 @@ class SetupCombat extends React.Component<SetupCombatProps, SetupCombatState> {
 }
 
 interface FLCCombatState {
-  createComponent?: JSX.Element,
-  startComponent?: JSX.Element,
+  isCreatePhase: boolean,
+  isSetupPhase: boolean,
   turnComponents?: Array<JSX.Element>,
   addTurnButton?: JSX.Element,
   participants?: {
     [key: string]: CombatParticipantState
-  }
+  },
+  activeTurnId?: number
 }
 
 export class FLCCombat extends React.Component<{}, FLCCombatState> {
@@ -430,45 +434,49 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
     });
   }
 
-  updateCombat(shouldPerformUpdate: boolean) {
+  addCombatTurn(turnId: number) {
+    const newTurn = <CombatTurn
+      participants={this.state.participants}
+      turnId={turnId}
+      activeTurnId={this.state.activeTurnId}
+      addParticipantDelta={this.addParticipantDelta.bind(this)} />
+    const turnComponents = [...this.state.turnComponents, newTurn];
+    this.setState({ turnComponents });
+  }
+
+  updateCombat(shouldPerformUpdate: boolean = true) {
     if (shouldPerformUpdate) {
       _.forEach(this.state.participants, (participant) => this.performTurnUpdate(participant));
     }
-    this.setState((prevState: FLCCombatState, props) => {
-      const newTurn = <CombatTurn
-        participants={prevState.participants}
-        addParticipantDelta={this.addParticipantDelta.bind(this)} />
-      return {
-        turnComponents: [...prevState.turnComponents, newTurn]
-      }
-    });
+    const activeTurnId = Date.now();
+    this.setState({ activeTurnId }, this.addCombatTurn.bind(this, activeTurnId));
   }
 
   startCombat(participants: { [key: string]: CombatParticipantState }) {
     this.setState({
-      startComponent: null,
+      isSetupPhase: false,
       addTurnButton: <button
         id='add-turn-button'
-        onClick={this.updateCombat.bind(this, true)}>Add Turn</button>,
+        onClick={this.updateCombat.bind(this)}>Add Turn</button>,
       participants: participants
-    });
-    this.updateCombat(false);
+    }, this.updateCombat.bind(this, false));
   }
 
-  initializeCombat() {
+  setupCombat() {
     this.setState({
-      createComponent: <button className="red-bkg" onClick={this.resetCombat.bind(this)}>Reset Combat</button>,
-      startComponent: <SetupCombat startCombat={this.startCombat.bind(this)}/>
+      isCreatePhase: false,
+      isSetupPhase: true
     });
   }
 
   getDefaultState(): FLCCombatState {
     return {
-      createComponent: <button onClick={this.initializeCombat.bind(this)}>Create New Combat</button>,
-      startComponent: null,
+      isCreatePhase: true,
+      isSetupPhase: false,
       turnComponents: [],
       addTurnButton: null,
-      participants: {}
+      participants: {},
+      activeTurnId: null
     };
   }
 
@@ -500,8 +508,10 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
           </p>
         </section>
         <section id="flc-combat-container">
-          {this.state.createComponent}
-          {this.state.startComponent}
+          {this.state.isCreatePhase ?
+              (<button onClick={this.setupCombat.bind(this)}>Create New Combat</button>) :
+              (<button className="red-bkg" onClick={this.resetCombat.bind(this)}>Reset Combat</button>)}
+          {this.state.isSetupPhase ? (<CombatSetup startCombat={this.startCombat.bind(this)} />) : (null)}
           {combatArea}
           {this.state.addTurnButton}
         </section>
