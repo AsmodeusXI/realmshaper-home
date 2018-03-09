@@ -1,29 +1,34 @@
 import * as React from "react";
-import * as _ from "lodash";
 
 import { CombatParticipantState } from './flc-combat';
 
 interface NewParticipantProps {
-  participantId: number,
+  id: number,
   update: Function
 }
 
-interface NewParticipantState {
+export interface NewParticipantState {
   id: number,
   name: string,
   level: number
 }
 
 export class NewParticipant extends React.Component<NewParticipantProps, NewParticipantState> {
+  newInput: HTMLInputElement;
+
   constructor(props: NewParticipantProps) {
     super(props);
     this.state = {
-      id: this.props.participantId,
+      id: this.props.id,
       name: "",
       level: 1
     }
     this.changeName = this.changeName.bind(this);
     this.changeLevel = this.changeLevel.bind(this);
+  }
+
+  componentDidMount() {
+    this.newInput.focus();
   }
 
   changeName(event: any) {
@@ -45,6 +50,7 @@ export class NewParticipant extends React.Component<NewParticipantProps, NewPart
         <div className="participant-field">
           <div className='col-4 participant-label'>Name:</div>
           <input
+            ref={(input) => this.newInput = input}
             type="text"
             name="new-name"
             className='col-6'
@@ -68,68 +74,45 @@ export class NewParticipant extends React.Component<NewParticipantProps, NewPart
 }
 
 interface CombatSetupProps {
-  startCombat?: Function
+  startCombat: Function,
+  updateNewParticipant: Function
 }
 
 interface CombatSetupState {
-  participants: {
-    [key: string]: CombatParticipantState
-  },
-  participantSetupElements: Array<JSX.Element>
+  newParticipantIds: Array<number>
 }
 
 export class CombatSetup extends React.Component<CombatSetupProps, CombatSetupState> {
   constructor(props: CombatSetupProps) {
     super(props);
-    this.getParticipantElement.bind(this);
+    this.getNewParticipantId.bind(this);
     this.state = {
-      participants: {},
-      participantSetupElements: [this.getParticipantElement()]
+      newParticipantIds: [this.getNewParticipantId()]
     }
   }
 
-  getParticipantElement(): JSX.Element {
-    return <NewParticipant participantId={Date.now()} update={this.updateParticipant.bind(this)}/>;
+  getNewParticipantId(): number {
+    return Date.now();
   }
 
-  addParticipant(): void {
+  addNewParticipantId(): void {
     this.setState((prevState, props) => {
       return {
-        participantSetupElements: [...prevState.participantSetupElements, this.getParticipantElement()]
+        newParticipantIds: [...prevState.newParticipantIds, this.getNewParticipantId()]
       }
-    });
-  }
-
-  updateParticipant(newParticipantState: NewParticipantState): void {
-    const participantData: CombatParticipantState = {
-      id: newParticipantState.id,
-      name: newParticipantState.name,
-      hp: (newParticipantState.level * 52),
-      fp: 50,
-      conditions: [],
-      delta: {
-        hp: [],
-        fp: [],
-        conditions: []
-      }
-    };
-
-    if (_.trim(participantData.name) === '') return;
-
-    this.setState((prevState, props) => {
-      const updatedParticipants = prevState.participants;
-      updatedParticipants[participantData.id] = participantData;
-      return { participants: updatedParticipants }
     });
   }
 
   render() {
-    const onClick = this.props.startCombat.bind(this, this.state.participants);
+    const onClick = () => { this.props.startCombat(); };
+    const newParticipants = this.state.newParticipantIds.map((pId) => {
+      return <NewParticipant id={pId} update={this.props.updateNewParticipant} />;
+    });
     return (
       <section id="flc-combat-setup">
         <div id="participant-container">
-          {this.state.participantSetupElements}
-          <button id="add-combat-participant" onClick={this.addParticipant.bind(this)}>+</button>
+          {newParticipants}
+          <button id="add-combat-participant" onClick={this.addNewParticipantId.bind(this)}>+</button>
         </div>
         <button onClick={onClick}>Start Combat</button>
       </section>
