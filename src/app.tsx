@@ -4,36 +4,36 @@ import { Header } from "./header/header";
 import { Footer } from "./footer/footer";
 import { Nav } from "./nav/nav";
 import { Content } from "./content/content";
+import { NavSection } from "./nav/nav";
 
 import './app.scss';
 
-interface AppProps {
-  tab?: string
+interface AppSettings {
+  tab: NavSection
 }
 
-export class App extends React.Component<{}, {}> {
-  props: AppProps
-  state: AppProps
-
-  constructor(props: AppProps) {
+export class App extends React.Component<{}, AppSettings> {
+  constructor(props: any) {
     super(props);
     this.state = {
-      tab: props.tab
+      tab: NavSection.about
     }
   }
 
-  handleNav(tab: string): void {
-    this.setState({tab: tab});
+  handleNav(tab: NavSection): void {
+    this.setState({ tab });
   }
 
   render() {
-    return <div id="rs-app" className="default">
-      <Header/>
-      <section id='rs-main'>
-        <Nav tab={this.state.tab} handleNav={(tab?: string) => this.handleNav(tab)}/>
-        <Content tab={this.state.tab}/>
-      </section>
-      <Footer/>
-    </div>;
+    return (
+      <div id="rs-app" className="default">
+        <Header/>
+        <section id='rs-main'>
+          <Nav tab={this.state.tab} handleNav={(tab: NavSection) => this.handleNav(tab)}/>
+          <Content tab={this.state.tab}/>
+        </section>
+        <Footer/>
+      </div>
+    );
   }
 }

@@ -4,27 +4,28 @@ import { About } from "./tabs/about/about";
 import { Twitch } from "./tabs/twitch/twitch";
 import { NameGen } from "./tabs/namegen/namegen";
 import { FLCCombat } from "./tabs/combat/flc-combat";
+import { NavSection } from "./../nav/nav";
 
 import { GeneratorMain } from "name-maker";
 
 import './content.scss';
 
 interface ContentProps {
-  tab?: string
+  tab: NavSection
 }
 
 export class Content extends React.Component<{}, {}> {
   props: ContentProps;
 
-  renderTab(tab: string): JSX.Element {
+  renderTab(tab: NavSection): JSX.Element {
     switch (tab) {
-      case "about":
+      case NavSection.about:
         return <About />;
-      case "twitch":
+      case NavSection.twitch:
         return <Twitch />;
-      case "name-gen":
+      case NavSection.nameGen:
         return <NameGen cultures={GeneratorMain.getAvailableCultures()}/>;
-      case "flc-combat":
+      case NavSection.flcCombat:
         return <FLCCombat />
       default:
         throw new Error("Tab ID missing.");
@@ -32,8 +33,6 @@ export class Content extends React.Component<{}, {}> {
   }
 
   render() {
-    return <main>
-      {this.renderTab(this.props.tab)}
-    </main>;
+    return <main> {this.renderTab(this.props.tab)}</main>;
   }
 }
