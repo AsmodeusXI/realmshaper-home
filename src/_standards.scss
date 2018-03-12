@@ -1,0 +1,63 @@
+// CUSTOM STANDARDS
+.about-section {
+  h2 {
+    margin: 0px;
+  }
+
+  margin: 10px;
+}
+
+// TAGS
+a {
+  &:hover {
+    color: $lapis-lazuli;
+  }
+}
+
+button {
+  background-color: $lapis-lazuli;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+}
+
+// COLUMNS
+.col-1 {
+  width: 10%;
+}
+
+.col-2 {
+  width: 20%;
+}
+
+.col-3 {
+  width: 30%;
+}
+
+.col-4 {
+  width: 40%;
+}
+
+.col-6 {
+  width: 60%;
+}
+
+// COLORS
+.red-bkg {
+  background-color: #7C071C;
+}
+
+// ORGANIZATION
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+// TEXT
+.bold {
+  font-weight: bold;
+}

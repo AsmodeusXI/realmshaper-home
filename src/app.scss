@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_standards";
 
 // GENERAL
 body {
@@ -8,74 +9,25 @@ body {
 // DEFAULT STYLE
 .default {
   #rs-main {
-    display: flex;
-    align-content: center;
+    @media only screen and (min-width: 600px) {
 
-    main {
-      flex: 5;
-      width: 100%;
     }
 
-    nav {
-      flex: 1;
+    @media only screen and (min-width: 768px) {
+
     }
 
-    a {
-      &:hover {
-        color: $lapis-lazuli;
-      }
-    }
+    @media only screen and (min-width: 1200px) {
+      display: flex;
+      align-content: center;
 
-    .about-section {
-      h2 {
-        margin: 0px;
+      main {
+        flex: 5;
       }
 
-      margin: 10px;
-    }
-
-    .pull-left {
-      float: left;
-    }
-
-    .pull-right {
-      float: right;
-    }
-
-    .bold {
-      font-weight: bold;
-    }
-
-    .col-4 {
-      width: 40%;
-    }
-
-    .col-6 {
-      width: 60%;
-    }
-
-    .col-3 {
-      width: 30%;
-    }
-
-    .col-1 {
-      width: 10%;
-    }
-
-    .col-2 {
-      width: 20%;
-    }
-
-    .red-bkg {
-      background-color: #7C071C;
-    }
-
-    button {
-      background-color: $lapis-lazuli;
-      color: white;
-      margin: 5px;
-      padding: 5px;
-      border: none;
+      nav {
+        flex: 1;
+      }
     }
   }
 }

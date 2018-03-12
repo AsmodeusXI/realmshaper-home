@@ -4,6 +4,6 @@ import "./header.scss";
 
 export class Header extends React.Component<{}, {}> {
   render() {
-    return <header>Realmshaper_</header>;
+    return <header>R E A L M S H A P E R</header>;
   }
 }
