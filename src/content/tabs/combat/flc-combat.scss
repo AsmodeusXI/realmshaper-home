@@ -1,8 +1,49 @@
 .default {
   #flc-combat-tab {
-    display: flex;
-    align-content: center;
-    flex-direction: column;
+    @media only screen and (min-width: 600px) {
+      #flc-combat-setup {
+        #participant-container {
+          width: 100%;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      #flc-combat-setup {
+        #participant-container {
+          width: 100%;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 1200px) {
+      display: flex;
+      align-content: center;
+      flex-direction: column;
+
+      #flc-combat-setup {
+        #participant-container {
+          display: flex;
+          flex-wrap: wrap;
+
+          .new-participant {
+            .participant-field {
+              .participant-label {
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
+
+      #flc-combat-turns {
+        .turn-participant {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+      }
+    }
 
     #flc-combat-container {
       margin: 0 10px 10px 10px;
@@ -16,9 +57,6 @@
       flex-direction: column;
 
       #participant-container {
-        display: flex;
-        flex-wrap: wrap;
-
         .new-participant {
           padding: 10px;
           margin: 5px 10px 5px 10px;
@@ -34,15 +72,15 @@
             }
           }
         }
+      }
 
-        #add-combat-participant {
-          border: 3px dashed $slate-gray;
-          color: $slate-gray;
-          background-color: white;
-          font-size: 28px;
-          margin: 5px 10px 5px 10px;
-          padding: 0 10px 0 10px;
-        }
+      #add-combat-participant {
+        border: 3px dashed $slate-gray;
+        color: $slate-gray;
+        background-color: white;
+        font-size: 28px;
+        margin: 5px 10px 5px 10px;
+        padding: 0 10px 0 10px;
       }
     }
 
@@ -51,11 +89,11 @@
         padding: 0 40px 0 40px;
       }
       .turn-participant {
-        display: flex;
-        align-items: center;
+        // display: flex;
+        // align-items: center;
+        // flex-wrap: wrap;
         padding: 10px;
         margin: 5px 0 5px 0;
-        flex-wrap: wrap;
         border: 3px solid $slate-gray;
         border-radius: 5px;
 

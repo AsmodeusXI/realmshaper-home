@@ -112,8 +112,8 @@ export class CombatSetup extends React.Component<CombatSetupProps, CombatSetupSt
       <section id="flc-combat-setup">
         <div id="participant-container">
           {newParticipants}
-          <button id="add-combat-participant" onClick={this.addNewParticipantId.bind(this)}>+</button>
         </div>
+        <button id="add-combat-participant" onClick={this.addNewParticipantId.bind(this)}>+</button>
         <button onClick={onClick}>Start Combat</button>
       </section>
     );
