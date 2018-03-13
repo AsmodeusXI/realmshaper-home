@@ -1,9 +1,29 @@
 .default {
   #flc-combat-tab {
+    @media only screen and (max-width: 600px) {
+      #flc-combat-setup {
+        #participant-container {
+          width: 100%;
+        }
+      }
+
+      #flc-combat-turns {
+        .turn-participant {
+          text-align: center;
+        }
+      }
+    }
+
     @media only screen and (min-width: 600px) {
       #flc-combat-setup {
         #participant-container {
           width: 100%;
+        }
+      }
+
+      #flc-combat-turns {
+        .turn-participant {
+          text-align: center;
         }
       }
     }
@@ -12,6 +32,12 @@
       #flc-combat-setup {
         #participant-container {
           width: 100%;
+        }
+      }
+
+      #flc-combat-turns {
+        .turn-participant {
+          text-align: center;
         }
       }
     }
@@ -41,6 +67,26 @@
           display: flex;
           align-items: center;
           flex-wrap: wrap;
+
+          .participant-name {
+            @include col1();
+          }
+
+          .participant-hp {
+            @include col2();
+          }
+
+          .participant-fp {
+            @include col2();
+          }
+
+          .participant-condition {
+            @include col4();
+          }
+
+          .participant-update {
+            @include col1();
+          }
         }
       }
     }
@@ -68,7 +114,12 @@
             display: flex;
 
             .participant-label {
+              @include col4()
               margin-right: 10px;
+            }
+
+            .participant-input {
+              @include col6()
             }
           }
         }
@@ -89,9 +140,6 @@
         padding: 0 40px 0 40px;
       }
       .turn-participant {
-        // display: flex;
-        // align-items: center;
-        // flex-wrap: wrap;
         padding: 10px;
         margin: 5px 0 5px 0;
         border: 3px solid $slate-gray;

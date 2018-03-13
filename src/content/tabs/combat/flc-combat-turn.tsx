@@ -133,8 +133,8 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
     conditionElements = conditionElements.concat(conditionDeltas);
     return (
       <div className="turn-participant">
-        <div className="col-1 participant-name">{this.props.name}</div>
-        <div className="col-2 participant-hp">
+        <div className="participant-name">{this.props.name}</div>
+        <div className="participant-hp">
           <div className="part-form">
             <div>
               {this.props.hp}{hpDeltas}
@@ -149,7 +149,7 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
             </div>
           </div>
         </div>
-        <div className="col-2 participant-fp">
+        <div className="participant-fp">
           <div className="part-form">
             <div>
               {this.props.fp}{fpDeltas}
@@ -164,7 +164,7 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
             </div>
           </div>
         </div>
-        <div className="col-4 participant-condition">
+        <div className="participant-condition">
           <div className="part-form">
             <div className="condition-container">
               {conditionElements}
@@ -176,18 +176,16 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
                   value={this.state.conditionNameChange}
                   updateFunction={this.changeField}
                 />) : (null) }
-              { this.props.isActive ? ('\u0028') : (null)}
               { this.props.isActive ?
-                (<TextInputDisplay
+                (<span className="paren-wrap"><TextInputDisplay
                   name="conditionDurationChange"
                   value={this.state.conditionDurationChange}
                   updateFunction={this.changeField}
-                />) : (null) }
-              { this.props.isActive ? ('\u0029') : (null)}
+                /></span>) : (null) }
             </div>
           </div>
         </div>
-        <div className="col-1 participant-update">
+        <div className="participant-update">
           { this.props.isActive ? (<button onClick={this.updateDelta}>Update</button>) : (null) }
         </div>
       </div>

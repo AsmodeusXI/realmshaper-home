@@ -48,22 +48,22 @@ export class NewParticipant extends React.Component<NewParticipantProps, NewPart
     return (
       <section className="new-participant">
         <div className="participant-field">
-          <div className='col-4 participant-label'>Name:</div>
+          <div className='participant-label'>Name:</div>
           <input
             ref={(input) => this.newInput = input}
             type="text"
             name="new-name"
-            className='col-6'
+            className='participant-input'
             value={this.state.name}
             onChange={this.changeName}
             onBlur={this.changeName} />
         </div>
         <div className="participant-field">
-          <div className='col-4 participant-label'>Level:</div>
+          <div className='participant-label'>Level:</div>
           <input
             type="number"
             name="new-level"
-            className='col-6'
+            className='participant-input'
             value={this.state.level}
             onChange={this.changeLevel}
             onBlur={this.changeLevel} />

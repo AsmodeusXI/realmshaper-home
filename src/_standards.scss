@@ -7,6 +7,16 @@
   margin: 10px;
 }
 
+.paren-wrap {
+  &:before {
+    content: "(";
+  }
+
+  &:after {
+    content: ")";
+  }
+}
+
 // TAGS
 a {
   &:hover {
@@ -23,20 +33,40 @@ button {
 }
 
 // COLUMNS
+@mixin col1() {
+  width: 10%;
+}
+
 .col-1 {
   width: 10%;
+}
+
+@mixin col2() {
+  width: 20%;
 }
 
 .col-2 {
   width: 20%;
 }
 
+@mixin col3() {
+  width: 30%;
+}
+
 .col-3 {
   width: 30%;
 }
 
+@mixin col4() {
+  width: 40%
+}
+
 .col-4 {
   width: 40%;
+}
+
+@mixin col6() {
+  width: 60%;
 }
 
 .col-6 {
