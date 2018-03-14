@@ -16,10 +16,10 @@ export class About extends React.Component<{}, {}> {
 
       <p>I can be reached at other, more traditional sites by clicking on the icons below:</p>
 
-      <span>
+      <div className='account-links'>
         <a target="_blank" href="https://www.linkedin.com/in/samuel-lawton-developer"><i className="fab fa-linkedin fa-2x"></i></a>
         <a target="_blank" href="https://github.com/AsmodeusXI"><i className="fab fa-github-square fa-2x"></i></a>
-      </span>
+      </div>
     </article>;
   }
 }

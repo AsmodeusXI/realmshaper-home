@@ -91,6 +91,10 @@ button {
   text-align: center;
 }
 
+@mixin center() {
+  text-align: center;
+}
+
 // TEXT
 .bold {
   font-weight: bold;

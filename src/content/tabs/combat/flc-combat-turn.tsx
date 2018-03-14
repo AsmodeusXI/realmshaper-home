@@ -6,6 +6,7 @@ import { CombatCondition, CombatParticipantState } from './flc-combat';
 interface TextInputDisplayProps {
   name: string,
   value: string,
+  wrapperCls?: string,
   updateFunction: Function
 }
 
@@ -15,13 +16,13 @@ class TextInputDisplay extends React.Component<TextInputDisplayProps, {}> {
   }
 
   render() {
-    return <input
+    return <div className={this.props.wrapperCls}><input
       type="text"
       name={this.props.name}
       value={this.props.value}
       onChange={(e) => this.props.updateFunction(e)}
       onBlur={(e) => this.props.updateFunction(e)}
-    />;
+    /></div>;
   }
 }
 
@@ -133,59 +134,57 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
     conditionElements = conditionElements.concat(conditionDeltas);
     return (
       <div className="turn-participant">
-        <div className="participant-name">{this.props.name}</div>
-        <div className="participant-hp">
+        <div className="participant participant-name">{this.props.name}</div>
+        <div className="participant participant-hp">
           <div className="part-form">
             <div>
-              {this.props.hp}{hpDeltas}
+              <b>{this.props.hp}</b>{hpDeltas}
             </div>
-            <div>
-              { this.props.isActive ?
-                (<TextInputDisplay
-                  name="hpChange"
-                  value={this.state.hpChange}
-                  updateFunction={this.changeField}
-                />) : (null) }
-            </div>
+            { this.props.isActive ?
+              (<TextInputDisplay
+                name="hpChange"
+                value={this.state.hpChange}
+                updateFunction={this.changeField}
+              />) : (null) }
           </div>
         </div>
-        <div className="participant-fp">
+        <div className="participant participant-fp">
           <div className="part-form">
             <div>
-              {this.props.fp}{fpDeltas}
+              <b>{this.props.fp}</b>{fpDeltas}
             </div>
-            <div>
-              { this.props.isActive ?
-                (<TextInputDisplay
-                  name="fpChange"
-                  value={this.state.fpChange}
-                  updateFunction={this.changeField}
-                />) : (null) }
-            </div>
+            { this.props.isActive ?
+              (<TextInputDisplay
+                name="fpChange"
+                value={this.state.fpChange}
+                updateFunction={this.changeField}
+              />) : (null) }
           </div>
         </div>
-        <div className="participant-condition">
+        <div className="participant participant-condition">
           <div className="part-form">
             <div className="condition-container">
-              {conditionElements}
+              { (conditionElements.length > 0) ? conditionElements : (<span><b>No Conditions</b></span>) }
             </div>
-            <div>
+            <div className="condition-applicator">
               { this.props.isActive ?
                 (<TextInputDisplay
                   name="conditionNameChange"
+                  wrapperCls=""
                   value={this.state.conditionNameChange}
                   updateFunction={this.changeField}
                 />) : (null) }
               { this.props.isActive ?
-                (<span className="paren-wrap"><TextInputDisplay
+                (<TextInputDisplay
                   name="conditionDurationChange"
+                  wrapperCls="paren-wrap"
                   value={this.state.conditionDurationChange}
                   updateFunction={this.changeField}
-                /></span>) : (null) }
+                />) : (null) }
             </div>
           </div>
         </div>
-        <div className="participant-update">
+        <div className="participant participant-update">
           { this.props.isActive ? (<button onClick={this.updateDelta}>Update</button>) : (null) }
         </div>
       </div>
@@ -196,7 +195,8 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
 interface CombatTurnProps {
   participants: {},
   addParticipantDelta: Function,
-  isTurnActive: boolean
+  isTurnActive: boolean,
+  turnNo: number
 }
 
 export class CombatTurn extends React.Component<CombatTurnProps, {}> {
@@ -218,6 +218,11 @@ export class CombatTurn extends React.Component<CombatTurnProps, {}> {
           isActive={this.props.isTurnActive} />
       );
     });
-    return <li>{participants}</li>;
+    return (
+      <div className='turn-wrapper'>
+        <div className='turn-counter'>{this.props.turnNo + 1}</div>
+        <div className='turn-actor'>{participants}</div>
+      </div>
+    );
   }
 }
