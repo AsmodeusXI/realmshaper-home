@@ -168,6 +168,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
       const isTurnActive = (this.state.turnIdx === idx);
       return (
         <CombatTurn
+          turnNo={idx}
           isTurnActive={isTurnActive}
           participants={turn.participants}
           addParticipantDelta={this.addParticipantDelta.bind(this)}
@@ -193,7 +194,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
           {this.state.isSetupPhase ? (<CombatSetup
             startCombat={this.startCombat.bind(this)}
             updateNewParticipant={this.updateNewParticipant.bind(this)} />) : (null)}
-          {this.state.isCombatPhase ? (<section id="flc-combat-turns"><ol>{turns}</ol></section>) : (null)}
+          {this.state.isCombatPhase ? (<section id="flc-combat-turns">{turns}</section>) : (null)}
           {this.state.isCombatPhase ?
             (<button id='add-turn-button' onClick={this.addTurn.bind(this)}>Add Turn</button>) : (null)}
         </section>

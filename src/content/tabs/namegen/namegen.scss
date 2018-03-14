@@ -3,41 +3,26 @@
     #name-gen-about {}
 
     #name-generators {
-      display: flex;
-      align-items: center;
+
+      @media only screen and (min-width: 600px) {
+
+      }
+
+      @media only screen and (min-width: 768px) {
+
+      }
+
+      @media only screen and (min-width: 1200px) {
+        display: flex;
+        align-items: center;
+
+        .name-container {
+          flex: 1;
+        }
+      }
 
       .name-container {
-        flex: 1;
         margin: 10px;
-
-        .gen-button {
-          margin: 5px;
-          padding: 5px;
-          text-align: center;
-          font-weight: bold;
-          border: 3px solid;
-          border-radius: 5px;
-          user-select: none;
-          cursor: default;
-
-          &.elf {
-            color: $med-turq;
-            border-color: $med-turq;
-
-            &:hover {
-              background-color: $med-turq-alpha;
-            }
-          }
-
-          &.human {
-            color: $pineapple;
-            border-color: $pineapple;
-
-            &:hover {
-              background-color: $pineapple-alpha;
-            }
-          }
-        }
 
         ul {
           list-style: none;

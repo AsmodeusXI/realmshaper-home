@@ -1,0 +1,101 @@
+// CUSTOM STANDARDS
+.about-section {
+  h2 {
+    margin: 0px;
+  }
+
+  margin: 10px;
+}
+
+.paren-wrap {
+  &:before {
+    content: "(";
+  }
+
+  &:after {
+    content: ")";
+  }
+}
+
+// TAGS
+a {
+  &:hover {
+    color: $lapis-lazuli;
+  }
+}
+
+button {
+  background-color: $lapis-lazuli;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+}
+
+// COLUMNS
+@mixin col1() {
+  width: 10%;
+}
+
+.col-1 {
+  width: 10%;
+}
+
+@mixin col2() {
+  width: 20%;
+}
+
+.col-2 {
+  width: 20%;
+}
+
+@mixin col3() {
+  width: 30%;
+}
+
+.col-3 {
+  width: 30%;
+}
+
+@mixin col4() {
+  width: 40%
+}
+
+.col-4 {
+  width: 40%;
+}
+
+@mixin col6() {
+  width: 60%;
+}
+
+.col-6 {
+  width: 60%;
+}
+
+// COLORS
+.red-bkg {
+  background-color: #7C071C;
+}
+
+// ORGANIZATION
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+@mixin center() {
+  text-align: center;
+}
+
+// TEXT
+.bold {
+  font-weight: bold;
+}

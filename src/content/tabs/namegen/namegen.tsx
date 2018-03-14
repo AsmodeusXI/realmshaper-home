@@ -44,12 +44,13 @@ export class NameGen extends React.Component<{}, {}> {
   render() {
     const generatorSections = this.props.cultures.map((culture) => {
       const sectionId = `${culture}-names`;
-      const buttonCls = `gen-button ${culture}`;
       const buttonLabel = `Generate ${capitalize(culture)} Names`;
       return (
         <section id={sectionId} className="name-container">
-          <div className={buttonCls} onClick={() => this.generate(culture)}>
-            {buttonLabel}
+          <div className="center">
+            <button onClick={this.generate.bind(this, culture)}>
+              {buttonLabel}
+            </button>
           </div>
           <NameList names={this.state[culture]} culture={culture}/>
         </section>
