@@ -100,6 +100,31 @@ button {
   background-color: $primary;
 }
 
+@mixin primary-light() {
+  color: $primary-light-text;
+  background-color: $primary-light;
+}
+
+@mixin primary-dark() {
+  color: $primary-dark-text;
+  background-color: $primary-dark;
+}
+
+@mixin secondary() {
+  color: $secondary-text;
+  background-color: $secondary;
+}
+
+@mixin secondary-light() {
+  color: $secondary-light-text;
+  background-color: $secondary-light;
+}
+
+@mixin secondary-dark() {
+  color: $secondary-dark-text;
+  background-color: $secondary-dark;
+}
+
 // TEXT
 .bold {
   font-weight: bold;
