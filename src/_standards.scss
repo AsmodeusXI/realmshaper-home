@@ -95,6 +95,11 @@ button {
   text-align: center;
 }
 
+@mixin primary() {
+  color: $primary-text;
+  background-color: $primary;
+}
+
 // TEXT
 .bold {
   font-weight: bold;

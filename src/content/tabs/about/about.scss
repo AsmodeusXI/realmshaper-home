@@ -1,26 +1,7 @@
 .default {
   #bio-tab {
-
-    @media only screen and (max-width: 600px) {
-      .account-links {
-        @include center();
-      }
-    }
-
-    @media only screen and (min-width: 600px) {
-      .account-links {
-        @include center();
-      }
-    }
-
-    @media only screen and (min-width: 768px) {
-
-    }
-
-    @media only screen and (min-width: 1200px) {
-      .account-links {
-        text-align: inherit;
-      }
+    .account-links {
+      @include center();
     }
 
     p:first-child {
@@ -33,6 +14,12 @@
 
       &:hover {
         color: $lapis-lazuli;
+      }
+    }
+
+    @media only screen and (min-width: 1200px) {
+      .account-links {
+        text-align: inherit;
       }
     }
   }
