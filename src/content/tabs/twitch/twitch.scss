@@ -1,6 +1,8 @@
 .default {
-  .center-viewer {
-    display: flex;
-    justify-content: center;
+  #twitch-tab {
+    .center-viewer {
+      display: flex;
+      justify-content: center;
+    }
   }
 }

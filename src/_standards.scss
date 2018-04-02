@@ -17,21 +17,6 @@
   }
 }
 
-// TAGS
-a {
-  &:hover {
-    color: $lapis-lazuli;
-  }
-}
-
-button {
-  background-color: $lapis-lazuli;
-  color: white;
-  margin: 5px;
-  padding: 5px;
-  border: none;
-}
-
 // COLUMNS
 @mixin col1() {
   width: 10%;
@@ -123,6 +108,22 @@ button {
 @mixin secondary-dark() {
   color: $secondary-dark-text;
   background-color: $secondary-dark;
+}
+
+// TAGS
+a {
+  color: $secondary;
+
+  &:hover {
+    color: $secondary-dark;
+  }
+}
+
+button {
+  @include primary-light();
+  margin: 5px;
+  padding: 5px;
+  border: none;
 }
 
 // TEXT

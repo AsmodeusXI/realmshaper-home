@@ -1,7 +1,5 @@
 .default {
   #name-gen-tab {
-    #name-gen-about {}
-
     #name-generators {
       .name-container {
         margin: 10px;
@@ -16,16 +14,7 @@
             text-align: center;
             border-radius: 5px;
             font-size: 18px;
-
-            &.elf {
-              color: white;
-              background-color: $med-turq;
-            }
-
-            &.human {
-              color: white;
-              background-color: $pineapple;
-            }
+            @include secondary();
           }
         }
       }

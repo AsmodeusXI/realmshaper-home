@@ -10,10 +10,11 @@
 
     [data-prefix="fab"] {
       margin-right: 5px;
-      color: black;
+
+      color: $primary-text;
 
       &:hover {
-        color: $lapis-lazuli;
+        color: $secondary;
       }
     }
 
