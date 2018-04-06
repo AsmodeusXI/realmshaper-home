@@ -1,83 +1,121 @@
 .default {
   #flc-combat-tab {
-    @media only screen and (max-width: 600px) {
-      #flc-combat-setup {
-        #participant-container {
-          width: 100%;
+
+    #flc-combat-container {
+      margin: 0 10px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+    }
+
+    #flc-combat-setup {
+      display: flex;
+      flex-direction: column;
+
+      #participant-container {
+        width: 100%;
+        .new-participant {
+          @include secondary-light();
+          padding: 10px;
+          margin: 5px 10px 5px 10px;
+          border-radius: 5px;
+
+          .participant-field {
+            margin: 10px;
+            display: flex;
+
+            .participant-label {
+              @include col4()
+              margin-right: 10px;
+            }
+
+            .participant-input {
+              @include col6()
+            }
+          }
         }
       }
 
-      #flc-combat-turns {
-        .turn-wrapper {
-          .turn-counter {
-            @include center();
-            text-decoration: underline;
+      #add-combat-participant {
+        border: 3px dashed $slate-gray;
+        color: $slate-gray;
+        background-color: $primary;
+        font-size: 28px;
+        margin: 5px 10px 5px 10px;
+        padding: 0 10px 0 10px;
+      }
+    }
+
+    #flc-combat-turns {
+      ol {
+        padding: 0 40px 0 40px;
+      }
+
+      .turn-wrapper {
+        padding: 10px;
+        margin: 10px 0 10px 0;
+        @include primary-dark();
+        border-radius: 5px;
+
+        .turn-counter {
+          @include center();
+          text-decoration: underline;
+          font-size: 36px;
+          font-weight: bold;
+        }
+
+        .turn-participant {
+          padding: 10px;
+          margin: 5px 0 5px 0;
+          border-radius: 5px;
+          @include secondary();
+          text-align: center;
+
+          .participant {
+            margin: 10px 0 10px 0;
           }
 
-          .turn-actor {
-            .turn-participant {
-              text-align: center;
+          button {
+            @include primary-dark();
+          }
 
-              .participant {
-                margin: 10px 0 10px 0;
-              }
+          .part-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .condition-container {
+            display: flex;
+            flex-wrap: wrap;
+
+            .condition {
+              @include primary-dark();
+              border-radius: 3px;
+              padding: 0 5px 0 5px;
+              margin: 2px 5px 2px 5px;
             }
           }
         }
       }
     }
 
-    @media only screen and (min-width: 600px) {
-      #flc-combat-setup {
-        #participant-container {
-          width: 100%;
-        }
-      }
+    input {
+      margin-top: 5px;
+      text-align: center;
+      border: none;
+      background-color: inherit;
+      border-bottom: 1px solid $secondary-text;
+      color: $secondary-text;
 
-      #flc-combat-turns {
-        .turn-wrapper {
-          .turn-counter {
-            @include center();
-            text-decoration: underline;
-          }
-
-          .turn-actor {
-            .turn-participant {
-              text-align: center;
-
-              .participant {
-                margin: 10px 0 10px 0;
-              }
-            }
-          }
-        }
+      &:focus {
+        outline: none;
+        color: $primary;
+        border-bottom: 2px solid $primary;
       }
     }
 
     @media only screen and (min-width: 768px) {
-      #flc-combat-setup {
-        #participant-container {
-          width: 100%;
-        }
-      }
-
-      #flc-combat-turns {
-        .turn-counter {
-          @include center();
-          text-decoration: underline;
-        }
-
-        .turn-wrapper {
-          .turn-actor {
-            .turn-participant {
-              text-align: center;
-            }
-          }
-        }
-      }
-    }
-
-    @media only screen and (min-width: 1200px) {
       display: flex;
       align-content: center;
       flex-direction: column;
@@ -145,112 +183,6 @@
             }
           }
         }
-      }
-    }
-
-    #flc-combat-container {
-      margin: 0 10px 10px 10px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-    }
-
-    #flc-combat-setup {
-      display: flex;
-      flex-direction: column;
-
-      #participant-container {
-        .new-participant {
-          padding: 10px;
-          margin: 5px 10px 5px 10px;
-          border: 3px solid $slate-gray;
-          border-radius: 5px;
-
-          .participant-field {
-            margin: 10px;
-            display: flex;
-
-            .participant-label {
-              @include col4()
-              margin-right: 10px;
-            }
-
-            .participant-input {
-              @include col6()
-            }
-          }
-        }
-      }
-
-      #add-combat-participant {
-        border: 3px dashed $slate-gray;
-        color: $slate-gray;
-        background-color: white;
-        font-size: 28px;
-        margin: 5px 10px 5px 10px;
-        padding: 0 10px 0 10px;
-      }
-    }
-
-    #flc-combat-turns {
-      ol {
-        padding: 0 40px 0 40px;
-      }
-      .turn-wrapper {
-        padding: 10px;
-        margin: 10px 0 10px 0;
-        background: $slate-gray;
-        border: 3px solid $slate-gray;
-        border-radius: 5px;
-
-        .turn-counter {
-          font-size: 36px;
-          font-weight: bold;
-        }
-
-        .turn-participant {
-          padding: 10px;
-          margin: 5px 0 5px 0;
-          border: 3px solid $slate-gray;
-          border-radius: 5px;
-
-          input {
-            background: $slate-gray;
-          }
-
-          .part-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .condition-container {
-            display: flex;
-            flex-wrap: wrap;
-
-            .condition {
-              border: 1px solid $cyber-grape;
-              background-color: $cyber-grape;
-              color: white;
-              border-radius: 3px;
-              padding: 0 5px 0 5px;
-              margin: 2px 5px 2px 5px;
-            }
-          }
-        }
-      }
-    }
-
-    input {
-      margin-top: 5px;
-      text-align: center;
-      border: none;
-      border-bottom: 1px solid black;
-
-      &:focus {
-        outline: none;
-        color: $lapis-lazuli;
-        border-bottom: 2px solid $lapis-lazuli;
       }
     }
   }

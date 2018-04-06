@@ -46,7 +46,7 @@ export class NewParticipant extends React.Component<NewParticipantProps, NewPart
 
   render() {
     return (
-      <section className="new-participant">
+      <section className="new-participant shadow-2">
         <div className="participant-field">
           <div className='participant-label'>Name:</div>
           <input

@@ -2,22 +2,24 @@
 @import "_standards";
 
 // GENERAL
-body {
+html, body {
+  height: 100%;
   margin: 0px;
+  background-color: $lightest-gray;
+}
+
+#root, #rs-app {
+  height: inherit;
 }
 
 // DEFAULT STYLE
 .default {
   #rs-main {
-    @media only screen and (min-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 768px) {
-
-    }
+    height: inherit;
+    background-color: $slate-gray;
 
     @media only screen and (min-width: 1200px) {
+      height: inherit;
       display: flex;
       align-content: center;
 
@@ -26,6 +28,7 @@ body {
       }
 
       nav {
+        height: inherit;
         flex: 1;
       }
     }

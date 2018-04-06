@@ -1,20 +1,28 @@
 .default {
   nav {
+    padding: 10px;
+
     .nav-card {
       margin: 10px;
       font-size: 20px;
       text-align: center;
-      background-color: $lightest-gray;
+      @include secondary();
+      transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 
       &:hover {
         cursor: pointer;
-        color: white;
-        background-color: $lapis-lazuli;
+        @include secondary-light();
+        @include box-shadow(0px, 6px, 10px, 0px, rgba(0,0,0,0.2));
       }
     }
 
     .selected {
-      background-color: $pale-green;
+      @include primary();
+
+      &:hover {
+        cursor: default;
+        @include primary();
+      }
     }
   }
 }

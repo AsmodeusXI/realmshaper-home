@@ -6,7 +6,7 @@ import './twitch.scss';
 export class Twitch extends React.Component<{}, {}> {
   render() {
     return <article id="twitch-tab">
-      <section id="twitch-about" className="about-section">
+      <section id="twitch-about">
         <h2>Embedded Twitch Viewer</h2>
         <p>
           In thinking about my personal site, I figured I might want a simple

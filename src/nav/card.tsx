@@ -15,7 +15,8 @@ export class Card extends React.Component<{}, {}> {
   }
 
   render() {
-    return <div id={this.props.id} className={this.props.className} onClick={() => this.props.handleNav(this.props.id)}>
+    const navClass = `shadow-1 ${this.props.className}`;
+    return <div id={this.props.id} className={navClass} onClick={() => this.props.handleNav(this.props.id)}>
       {this.props.name}
     </div>;
   }

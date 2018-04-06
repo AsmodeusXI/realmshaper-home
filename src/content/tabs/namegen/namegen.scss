@@ -1,26 +1,6 @@
 .default {
   #name-gen-tab {
-    #name-gen-about {}
-
     #name-generators {
-
-      @media only screen and (min-width: 600px) {
-
-      }
-
-      @media only screen and (min-width: 768px) {
-
-      }
-
-      @media only screen and (min-width: 1200px) {
-        display: flex;
-        align-items: center;
-
-        .name-container {
-          flex: 1;
-        }
-      }
-
       .name-container {
         margin: 10px;
 
@@ -34,17 +14,17 @@
             text-align: center;
             border-radius: 5px;
             font-size: 18px;
-
-            &.elf {
-              color: white;
-              background-color: $med-turq;
-            }
-
-            &.human {
-              color: white;
-              background-color: $pineapple;
-            }
+            @include primary-light();
           }
+        }
+      }
+
+      @media only screen and (min-width: 1200px) {
+        display: flex;
+        align-items: center;
+
+        .name-container {
+          flex: 1;
         }
       }
     }

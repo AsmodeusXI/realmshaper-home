@@ -4,7 +4,7 @@ import './about.scss';
 
 export class About extends React.Component<{}, {}> {
   render() {
-    return <article id="bio-tab" className="about-section">
+    return <article id="bio-tab">
       <h2>Realmshaper</h2>
 
       <p>Welcome to Realmshaper, the personal website of Sam Lawton. Why Realmshaper? Well, my first idea for a site was a set of resources for creators who play
