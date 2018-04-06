@@ -33,7 +33,7 @@ class ConditionDisplay extends React.Component<CombatCondition, {}> {
 
   render() {
     return (
-      <div className="condition">
+      <div className="condition shadow-1">
         {this.props.name}&nbsp;{this.props.duration}
       </div>
     )
