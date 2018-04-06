@@ -177,7 +177,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
     });
     return (
       <article id="flc-combat-tab">
-        <section id="flc-combat-about" className="about-section">
+        <section id="flc-combat-about">
           <h2>FLC Combat Tracker</h2>
           <p>
             "FLC" is the name of a custom Pokemon tabletop role-playing game
@@ -190,7 +190,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
         <section id="flc-combat-container">
           {this.state.isCreatePhase ?
               (<button onClick={this.setupCombat.bind(this)}>Create New Combat</button>) :
-              (<button className="red-bkg" onClick={this.resetCombat.bind(this)}>Reset Combat</button>)}
+              (<button onClick={this.resetCombat.bind(this)}>Reset Combat</button>)}
           {this.state.isSetupPhase ? (<CombatSetup
             startCombat={this.startCombat.bind(this)}
             updateNewParticipant={this.updateNewParticipant.bind(this)} />) : (null)}

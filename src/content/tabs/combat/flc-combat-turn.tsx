@@ -133,7 +133,7 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
     });
     conditionElements = conditionElements.concat(conditionDeltas);
     return (
-      <div className="turn-participant">
+      <div className="turn-participant shadow-2">
         <div className="participant participant-name">{this.props.name}</div>
         <div className="participant participant-hp">
           <div className="part-form">
@@ -170,14 +170,14 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
               { this.props.isActive ?
                 (<TextInputDisplay
                   name="conditionNameChange"
-                  wrapperCls=""
+                  wrapperCls="name-wrapper"
                   value={this.state.conditionNameChange}
                   updateFunction={this.changeField}
                 />) : (null) }
               { this.props.isActive ?
                 (<TextInputDisplay
                   name="conditionDurationChange"
-                  wrapperCls="paren-wrap"
+                  wrapperCls="duration-wrapper paren-wrap"
                   value={this.state.conditionDurationChange}
                   updateFunction={this.changeField}
                 />) : (null) }
@@ -219,7 +219,7 @@ export class CombatTurn extends React.Component<CombatTurnProps, {}> {
       );
     });
     return (
-      <div className='turn-wrapper'>
+      <div className='turn-wrapper shadow-1'>
         <div className='turn-counter'>{this.props.turnNo + 1}</div>
         <div className='turn-actor'>{participants}</div>
       </div>

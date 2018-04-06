@@ -15,10 +15,9 @@
       #participant-container {
         width: 100%;
         .new-participant {
-          @include secondary();
+          @include secondary-light();
           padding: 10px;
           margin: 5px 10px 5px 10px;
-          // border: 3px solid $slate-gray;
           border-radius: 5px;
 
           .participant-field {
@@ -40,6 +39,7 @@
       #add-combat-participant {
         border: 3px dashed $slate-gray;
         color: $slate-gray;
+        background-color: $primary;
         font-size: 28px;
         margin: 5px 10px 5px 10px;
         padding: 0 10px 0 10px;
@@ -54,8 +54,7 @@
       .turn-wrapper {
         padding: 10px;
         margin: 10px 0 10px 0;
-        background: $slate-gray;
-        border: 3px solid $slate-gray;
+        @include primary-dark();
         border-radius: 5px;
 
         .turn-counter {
@@ -68,16 +67,16 @@
         .turn-participant {
           padding: 10px;
           margin: 5px 0 5px 0;
-          border: 3px solid $slate-gray;
           border-radius: 5px;
+          @include secondary();
           text-align: center;
 
           .participant {
             margin: 10px 0 10px 0;
           }
 
-          input {
-            background: $slate-gray;
+          button {
+            @include primary-dark();
           }
 
           .part-form {
@@ -91,9 +90,7 @@
             flex-wrap: wrap;
 
             .condition {
-              border: 1px solid $cyber-grape;
-              background-color: $cyber-grape;
-              color: white;
+              @include primary-dark();
               border-radius: 3px;
               padding: 0 5px 0 5px;
               margin: 2px 5px 2px 5px;
