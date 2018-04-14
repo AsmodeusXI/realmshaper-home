@@ -3,22 +3,15 @@
 
 // GENERAL
 html, body {
-  height: 100%;
   margin: 0px;
-  background-color: $lightest-gray;
-}
-
-#root, #rs-app {
-  height: inherit;
+  background-color: #bed1d1;
+  font-family: Tahoma, Helvetica, sans-serif;
 }
 
 // DEFAULT STYLE
 .default {
   #rs-main {
-    background-color: $slate-gray;
-
     @media only screen and (min-width: 1200px) {
-      height: 100%;
       display: flex;
       align-content: center;
 
