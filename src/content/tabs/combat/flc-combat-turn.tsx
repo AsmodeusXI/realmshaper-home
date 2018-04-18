@@ -16,13 +16,15 @@ class TextInputDisplay extends React.Component<TextInputDisplayProps, {}> {
   }
 
   render() {
-    return <div className={this.props.wrapperCls}><input
-      type="text"
-      name={this.props.name}
-      value={this.props.value}
-      onChange={(e) => this.props.updateFunction(e)}
-      onBlur={(e) => this.props.updateFunction(e)}
-    /></div>;
+    return <div className={this.props.wrapperCls}>
+      <input
+        type="text"
+        name={this.props.name}
+        value={this.props.value}
+        onChange={(e) => this.props.updateFunction(e)}
+        onBlur={(e) => this.props.updateFunction(e)}
+      />
+    </div>;
   }
 }
 
