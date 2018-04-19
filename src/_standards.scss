@@ -150,3 +150,20 @@ button {
 button:hover {
   @include box-shadow(0px, 6px, 10px, 0px, rgba(0,0,0,0.2));
 }
+
+@mixin underline-input {
+  input {
+    margin-top: 5px;
+    text-align: center;
+    border: none;
+    background-color: inherit;
+    border-bottom: 1px solid $secondary-text;
+    color: $secondary-text;
+
+    &:focus {
+      outline: none;
+      color: $primary;
+      border-bottom: 2px solid $primary;
+    }
+  }
+}

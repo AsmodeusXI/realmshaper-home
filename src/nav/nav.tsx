@@ -8,7 +8,8 @@ export enum NavSection {
   about = 'about',
   twitch = 'twitch',
   nameGen = 'name-gen',
-  flcCombat = 'flc-combat'
+  flcCombat = 'flc-combat',
+  crCalculator = 'cr'
 }
 
 interface NavProps {
@@ -35,6 +36,9 @@ export class Nav extends React.Component<{}, {}> {
         name='Name Generator' className={this.getSelected(NavSection.nameGen)} handleNav={this.props.handleNav} />
       <Card id={NavSection.flcCombat}
         name='FLC Combat Tracker' className={this.getSelected(NavSection.flcCombat)} handleNav={this.props.handleNav} />
+      <Card id={NavSection.crCalculator}
+        name='D&D 5e CR Calculator'
+        className={this.getSelected(NavSection.crCalculator)} handleNav={this.props.handleNav} />
     </nav>;
   }
 }

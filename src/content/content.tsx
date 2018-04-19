@@ -4,6 +4,7 @@ import { About } from "./tabs/about/about";
 import { Twitch } from "./tabs/twitch/twitch";
 import { NameGen } from "./tabs/namegen/namegen";
 import { FLCCombat } from "./tabs/combat/flc-combat";
+import { CRCalculator } from "./tabs/crcalc/cr-calculator";
 import { NavSection } from "./../nav/nav";
 
 import { GeneratorMain } from "name-maker";
@@ -26,7 +27,9 @@ export class Content extends React.Component<{}, {}> {
       case NavSection.nameGen:
         return <NameGen cultures={GeneratorMain.getAvailableCultures()}/>;
       case NavSection.flcCombat:
-        return <FLCCombat />
+        return <FLCCombat />;
+      case NavSection.crCalculator:
+        return <CRCalculator />;
       default:
         throw new Error("Tab ID missing.");
     }

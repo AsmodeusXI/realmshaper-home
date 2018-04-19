@@ -100,20 +100,7 @@
       }
     }
 
-    input {
-      margin-top: 5px;
-      text-align: center;
-      border: none;
-      background-color: inherit;
-      border-bottom: 1px solid $secondary-text;
-      color: $secondary-text;
-
-      &:focus {
-        outline: none;
-        color: $primary;
-        border-bottom: 2px solid $primary;
-      }
-    }
+    @include underline-input();
 
     @media only screen and (min-width: 768px) {
       display: flex;
