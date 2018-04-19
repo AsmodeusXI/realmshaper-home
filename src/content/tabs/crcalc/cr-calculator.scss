@@ -1,5 +1,71 @@
 .default {
   #cr-calculator-tab {
-    
+    #cr-calculator-container {
+      .cr-input {
+        padding: 10px;
+        border-radius: 2px;
+        text-align: center;
+        @include secondary();
+        @include underline-input();
+
+        .cr-input-fields {
+          margin: 10px;
+        }
+
+        .cr-input-button {
+          margin-top: 10px;
+          @include primary-dark();
+        }
+      }
+
+      .cr-result {
+        text-align: center;
+        border-radius: 2px;
+        margin-top: 5px;
+        @include secondary();
+
+        p {
+          font-size: 30px;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      #cr-calculator-container {
+        display: flex;
+
+        .cr-input {
+          flex: 5;
+          display: flex;
+
+          .cr-input-fields {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            input {
+              margin: 10px;
+            }
+          }
+
+          .cr-input-button {
+            width: 100%;
+          }
+        }
+
+        .cr-result {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          margin-top: 0px;
+          margin-left: 10px;
+
+          p {
+            text-align: center;
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }

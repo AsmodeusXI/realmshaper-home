@@ -71,18 +71,29 @@ export class CRCalculator extends React.Component<{}, CRState> {
         </p>
       </section>
       <section id="cr-calculator-container">
-        <input type="text" name="hp" placeholder="Hit Points"
-          onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
-        <input type="text" name="ac" placeholder="Armor Class"
-          onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
-        <input type="text" name="dpr" placeholder="Damage per Round"
-          onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
-        <input type="text" name="atk" placeholder="Attack Bonus"
-          onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
-        <input type="text" name="save" placeholder="Save DC"
-          onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
-        <button onClick={this.calculateCR.bind(this)}>Create</button>
-        <div className="cr-result">{ this.state.cr ? (this.state.cr) : (null) }</div>
+        <div className="cr-input">
+          <div className="cr-input-fields">
+            <div>HP:
+            <input type="text" name="hp" placeholder="Hit Points"
+              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
+            <div>AC:
+            <input type="text" name="ac" placeholder="Armor Class"
+              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
+            <div>DpR:
+            <input type="text" name="dpr" placeholder="Damage per Round"
+              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
+            <div>Atk:
+            <input type="text" name="atk" placeholder="Attack Bonus"
+              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
+            <div>Save:
+            <input type="text" name="save" placeholder="Save DC"
+              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
+          </div>
+          <button className="cr-input-button" onClick={this.calculateCR.bind(this)}>Create</button>
+        </div>
+        <div className="cr-result">
+          <p>{ this.state.cr ? (this.state.cr) : ('N/A') }</p>
+        </div>
       </section>
     </article>;
   }
