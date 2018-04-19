@@ -159,11 +159,13 @@ button:hover {
     background-color: inherit;
     border-bottom: 1px solid $secondary-text;
     color: $secondary-text;
+    padding-bottom: 1px;
 
     &:focus {
       outline: none;
       color: $primary;
       border-bottom: 2px solid $primary;
+      padding-bottom: 0px;
     }
   }
 }
