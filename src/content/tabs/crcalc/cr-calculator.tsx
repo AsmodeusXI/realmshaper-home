@@ -9,7 +9,7 @@ interface CRState {
   dpr: number | string,
   atk: number,
   save: number,
-  cr: number
+  cr: number | string
 }
 
 export class CRCalculator extends React.Component<{}, CRState> {
@@ -27,31 +27,48 @@ export class CRCalculator extends React.Component<{}, CRState> {
   }
 
   updateField(event: any): void {
-    const changeValue = parseInt(event.target.value);
+    const isStringDpr = event.target.value.includes('d');
+    const changeValue = isStringDpr ? event.target.value : parseInt(event.target.value);
     const changeName = event.target.getAttribute('name');
     this.setState({ [changeName]: changeValue });
   }
 
   calculateCR(): void {
-    let creatureCR;
+    let hasError = false;
+    let creatureCR, errorText;
     if (typeof this.state.dpr === 'string'){
-      creatureCR = cr.calculateWithDice(
-        this.state.hp,
-        this.state.ac,
-        this.state.dpr,
-        this.state.atk,
-        this.state.save
-      );
+      try {
+        creatureCR = cr.calculateWithDice(
+          this.state.hp,
+          this.state.ac,
+          this.state.dpr,
+          this.state.atk,
+          this.state.save
+        );
+      } catch (e) {
+        hasError = true;
+        errorText = 'calculateWithDice() Failed';
+      }
     } else {
-      creatureCR = cr.calculate(
-        this.state.hp,
-        this.state.ac,
-        this.state.dpr,
-        this.state.atk,
-        this.state.save
-      );
+      try {
+        creatureCR = cr.calculate(
+          this.state.hp,
+          this.state.ac,
+          this.state.dpr,
+          this.state.atk,
+          this.state.save
+        );
+      } catch (e) {
+        hasError = true;
+        errorText = 'calculate() Failed';
+      }
     }
-    this.setState({ cr: creatureCR });
+
+    if (hasError) {
+      this.setState({ cr: errorText });
+    } else {
+      this.setState({ cr: creatureCR });
+    }
   }
 
   render() {
@@ -73,23 +90,35 @@ export class CRCalculator extends React.Component<{}, CRState> {
       <section id="cr-calculator-container">
         <div className="cr-input">
           <div className="cr-input-fields">
-            <div>HP:
-            <input type="text" name="hp" placeholder="Hit Points"
-              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
-            <div>AC:
-            <input type="text" name="ac" placeholder="Armor Class"
-              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
-            <div>DpR:
-            <input type="text" name="dpr" placeholder="Damage per Round"
-              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
-            <div>Atk:
-            <input type="text" name="atk" placeholder="Attack Bonus"
-              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
-            <div>Save:
-            <input type="text" name="save" placeholder="Save DC"
-              onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/></div>
+            <div className="part-form">
+              <div><b>HP</b></div>
+              <input type="text" name="hp" placeholder="Hit Points"
+                onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
+            </div>
+            <div className="part-form">
+              <div><b>AC</b></div>
+              <input type="text" name="ac" placeholder="Armor Class"
+                onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
+            </div>
+            <div className="part-form">
+              <div><b>DpR</b></div>
+              <input type="text" name="dpr" placeholder="Damage per Round"
+                onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
+            </div>
+            <div className="part-form">
+              <div><b>Atk</b></div>
+              <input type="text" name="atk" placeholder="Attack Bonus"
+                onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
+            </div>
+            <div className="part-form">
+              <div><b>Save</b></div>
+              <input type="text" name="save" placeholder="Save DC"
+                onChange={(e) => this.updateField(e)} onBlur={(e) => this.updateField(e)}/>
+            </div>
           </div>
-          <button className="cr-input-button" onClick={this.calculateCR.bind(this)}>Create</button>
+          <div className="cr-input-button">
+            <button onClick={this.calculateCR.bind(this)}>Create</button>
+          </div>
         </div>
         <div className="cr-result">
           <p>{ this.state.cr ? (this.state.cr) : ('N/A') }</p>

@@ -10,27 +10,40 @@
 
         .cr-input-fields {
           margin: 10px;
+
+          .part-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+          }
         }
 
         .cr-input-button {
-          margin-top: 10px;
-          @include primary-dark();
+          margin: 10px 0px 0px 0px;
+          width: 100%;
+
+          button {
+            margin: 0px;
+            width: 100%;
+            @include primary-dark();
+          }
         }
       }
 
       .cr-result {
         text-align: center;
         border-radius: 2px;
-        margin-top: 5px;
         @include secondary();
 
         p {
+          margin: 10px 0px 0px 0px;
           font-size: 30px;
         }
       }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 1200px) {
       #cr-calculator-container {
         display: flex;
 
@@ -49,7 +62,8 @@
           }
 
           .cr-input-button {
-            width: 100%;
+            display: flex;
+            margin: 0px;
           }
         }
 
@@ -57,8 +71,7 @@
           flex: 1;
           display: flex;
           align-items: center;
-          margin-top: 0px;
-          margin-left: 10px;
+          margin: 0px 10px 0px 10px;
 
           p {
             text-align: center;
