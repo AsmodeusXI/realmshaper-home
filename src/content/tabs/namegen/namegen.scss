@@ -4,6 +4,10 @@
       .name-container {
         margin: 10px;
 
+        button {
+          @include confirm-button();
+        }
+
         ul {
           list-style: none;
           padding: 0px;
@@ -13,7 +17,7 @@
             padding: 5px;
             text-align: center;
             font-size: 18px;
-            @include tertiary();
+            @include primary-light();
           }
         }
       }

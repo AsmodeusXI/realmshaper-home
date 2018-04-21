@@ -85,6 +85,11 @@
   background-color: $primary;
 }
 
+@mixin primary-reverse() {
+  color: $primary;
+  background-color: $primary-text;
+}
+
 @mixin primary-light() {
   color: $primary-light-text;
   background-color: $primary-light;
@@ -188,13 +193,14 @@ button {
   @include box-shadow(0px, 3px, 5px, 0px, rgba(0,0,0,0.25));
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   border: none;
   font-family: inherit;
   font-size: inherit;
 
   &:hover {
     @include box-shadow(0px, 6px, 10px, 0px, rgba(0,0,0,0.2));
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   }
 }
 
@@ -214,10 +220,23 @@ button {
 
     &:focus {
       outline: none;
-      color: $primary;
-      border-color: $primary !important;
-      border-bottom: 2px solid $primary;
+      color: $primary-text;
+      border-bottom: 2px solid $primary-text;
       padding-bottom: 0px;
     }
   }
+}
+
+@mixin confirm-button {
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #459A00;
+  transition: none;
+}
+
+@mixin error-button {
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #B32122;
+  transition: none;
 }
