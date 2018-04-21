@@ -4,8 +4,8 @@
 // GENERAL
 html, body {
   margin: 0px;
-  background-color: #bed1d1;
-  font-family: Tahoma, Helvetica, sans-serif;
+  background-color: $slate-gray;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 // DEFAULT STYLE
@@ -16,7 +16,7 @@ html, body {
       align-content: center;
 
       main {
-        flex: 5;
+        flex: 4;
       }
 
       nav {

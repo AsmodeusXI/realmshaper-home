@@ -190,7 +190,7 @@ export class FLCCombat extends React.Component<{}, FLCCombatState> {
         <section id="flc-combat-container">
           {this.state.isCreatePhase ?
               (<button onClick={this.setupCombat.bind(this)}>Create New Combat</button>) :
-              (<button onClick={this.resetCombat.bind(this)}>Reset Combat</button>)}
+              (<button className="combat-reset-button" onClick={this.resetCombat.bind(this)}>Reset Combat</button>)}
           {this.state.isSetupPhase ? (<CombatSetup
             startCombat={this.startCombat.bind(this)}
             updateNewParticipant={this.updateNewParticipant.bind(this)} />) : (null)}

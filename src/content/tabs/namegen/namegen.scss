@@ -12,9 +12,8 @@
             margin: 5px;
             padding: 5px;
             text-align: center;
-            border-radius: 5px;
             font-size: 18px;
-            @include primary-light();
+            @include tertiary();
           }
         }
       }

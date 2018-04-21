@@ -3,7 +3,6 @@
     #cr-calculator-container {
       .cr-input {
         padding: 10px;
-        border-radius: 2px;
         text-align: center;
         @include secondary();
         @include underline-input();
