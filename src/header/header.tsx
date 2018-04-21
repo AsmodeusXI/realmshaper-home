@@ -4,6 +4,6 @@ import "./header.scss";
 
 export class Header extends React.Component<{}, {}> {
   render() {
-    return <header>R E A L M S H A P E R</header>;
+    return <header className="shadow-1">R E A L M S H A P E R</header>;
   }
 }

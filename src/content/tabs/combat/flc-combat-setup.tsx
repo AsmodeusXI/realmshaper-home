@@ -46,7 +46,7 @@ export class NewParticipant extends React.Component<NewParticipantProps, NewPart
 
   render() {
     return (
-      <section className="new-participant shadow-2">
+      <section className="new-participant">
         <div className="participant-field">
           <div className='participant-label'>Name:</div>
           <input
@@ -114,7 +114,7 @@ export class CombatSetup extends React.Component<CombatSetupProps, CombatSetupSt
           {newParticipants}
         </div>
         <button id="add-combat-participant" onClick={this.addNewParticipantId.bind(this)}>+</button>
-        <button onClick={onClick}>Start Combat</button>
+        <button id="combat-start-button" onClick={onClick}>Start Combat</button>
       </section>
     );
   }

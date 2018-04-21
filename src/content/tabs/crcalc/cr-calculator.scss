@@ -3,10 +3,16 @@
     #cr-calculator-container {
       .cr-input {
         padding: 10px;
-        border-radius: 2px;
         text-align: center;
-        @include secondary();
+        @include primary-reverse();
         @include underline-input();
+
+        input {
+          &:focus {
+            color: $secondary;
+            border-color: $secondary;
+          }
+        }
 
         .cr-input-fields {
           margin: 10px;
@@ -26,7 +32,7 @@
           button {
             margin: 0px;
             width: 100%;
-            @include primary-dark();
+            @include confirm-button();
           }
         }
       }
@@ -34,7 +40,7 @@
       .cr-result {
         text-align: center;
         border-radius: 2px;
-        @include secondary();
+        @include primary-reverse();
 
         p {
           margin: 10px 0px 0px 0px;

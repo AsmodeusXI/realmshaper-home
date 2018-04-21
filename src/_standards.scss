@@ -85,14 +85,29 @@
   background-color: $primary;
 }
 
+@mixin primary-reverse() {
+  color: $primary;
+  background-color: $primary-text;
+}
+
 @mixin primary-light() {
   color: $primary-light-text;
   background-color: $primary-light;
 }
 
+@mixin primary-lightest() {
+  color: $primary-lightest-text;
+  background-color: $primary-lightest;
+}
+
 @mixin primary-dark() {
   color: $primary-dark-text;
   background-color: $primary-dark;
+}
+
+@mixin primary-darkest() {
+  color: $primary-darkest-text;
+  background-color: $primary-darkest;
 }
 
 @mixin secondary() {
@@ -105,9 +120,44 @@
   background-color: $secondary-light;
 }
 
+@mixin secondary-lightest() {
+  color: $secondary-lightest-text;
+  background-color: $secondary-lightest;
+}
+
 @mixin secondary-dark() {
   color: $secondary-dark-text;
   background-color: $secondary-dark;
+}
+
+@mixin secondary-darkest() {
+  color: $secondary-darkest-text;
+  background-color: $secondary-darkest;
+}
+
+@mixin tertiary() {
+  color: $tertiary-text;
+  background-color: $tertiary;
+}
+
+@mixin tertiary-light() {
+  color: $tertiary-light-text;
+  background-color: $tertiary-light;
+}
+
+@mixin tertiary-lightest() {
+  color: $tertiary-lightest-text;
+  background-color: $tertiary-lightest;
+}
+
+@mixin tertiary-dark() {
+  color: $tertiary-dark-text;
+  background-color: $tertiary-dark;
+}
+
+@mixin tertiary-darkest() {
+  color: $tertiary-darkest-text;
+  background-color: $tertiary-darkest;
 }
 
 // TAGS
@@ -143,12 +193,15 @@ button {
   @include box-shadow(0px, 3px, 5px, 0px, rgba(0,0,0,0.25));
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   border: none;
-}
+  font-family: inherit;
+  font-size: inherit;
 
-button:hover {
-  @include box-shadow(0px, 6px, 10px, 0px, rgba(0,0,0,0.2));
+  &:hover {
+    @include box-shadow(0px, 6px, 10px, 0px, rgba(0,0,0,0.2));
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
 }
 
 @mixin underline-input {
@@ -161,11 +214,29 @@ button:hover {
     color: $secondary-text;
     padding-bottom: 1px;
 
+    &::placeholder {
+      color: inherit;
+    }
+
     &:focus {
       outline: none;
-      color: $primary;
-      border-bottom: 2px solid $primary;
+      color: $primary-text;
+      border-bottom: 2px solid $primary-text;
       padding-bottom: 0px;
     }
   }
+}
+
+@mixin confirm-button {
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #459A00;
+  transition: none;
+}
+
+@mixin error-button {
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #B32122;
+  transition: none;
 }

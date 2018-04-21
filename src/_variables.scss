@@ -3,27 +3,38 @@ $slate-gray: #DDDDDD;
 $moderate-gray: #AAAAAA;
 $light-gray: #666666;
 
-// Palette by Colors
-$med-turq: #55D6BE;
-$pale-green: #98FB98;
-$lapis-lazuli: #2E5EAA;
-$cyber-grape: #5B4E77;
-$pineapple: #593959;
-
-$med-turq-alpha: rgba(#55D6BE, 0.25);
-$pineapple-alpha: rgba(#593959, 0.25);
+$background-color: #EEEEEE;
 
 // Material Design Colors
-$primary: #1565C0;
-$primary-text: #FFFFFF;
-$primary-light: #5E92F3;
-$primary-light-text: #000000;
-$primary-dark: #003C8F;
+$primary: #CCCCCC;
+$primary-text: #004087;
+$primary-light: #004FA7;
+$primary-light-text: #FFFFFF;
+$primary-lightest: #0170EB;
+$primary-lightest-text: #FFFFFF;
+$primary-dark: #00326A;
 $primary-dark-text: #FFFFFF;
+$primary-darkest: #00234A;
+$primary-darkest-text: #FFFFFF;
 
-$secondary: #FDD835;
-$secondary-text: #000000;
-$secondary-light: #FFFF6B;
+$secondary: #CF4800;
+$secondary-text: #FFFFFF;
+$secondary-light: #FF8849;
 $secondary-light-text: #000000;
-$secondary-dark: #C6A700;
-$secondary-dark-text: #000000;
+$secondary-lightest: #FF5900;
+$secondary-lightest-text: #000000;
+$secondary-dark: #A33900;
+$secondary-dark-text: #FFFFFF;
+$secondary-darkest: #722800;
+$secondary-darkest-text: #FFFFFF;
+
+$tertiary: #CFA100;
+$tertiary-text: #000000;
+$tertiary-light: #FFC600;
+$tertiary-light-text: #000000;
+$tertiary-lightest: #FFC600;
+$tertiary-lightest-text: #000000;
+$tertiary-dark: #A37F00;
+$tertiary-dark-text: #FFFFFF;
+$tertiary-darkest: #725900;
+$tertiary-darkest-text: #FFFFFF;

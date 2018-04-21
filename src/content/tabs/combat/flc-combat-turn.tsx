@@ -35,7 +35,7 @@ class ConditionDisplay extends React.Component<CombatCondition, {}> {
 
   render() {
     return (
-      <div className="condition shadow-1">
+      <div className="condition">
         {this.props.name}&nbsp;{this.props.duration}
       </div>
     )
@@ -135,7 +135,7 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
     });
     conditionElements = conditionElements.concat(conditionDeltas);
     return (
-      <div className="turn-participant shadow-2">
+      <div className="turn-participant">
         <div className="participant participant-name">{this.props.name}</div>
         <div className="participant participant-hp">
           <div className="part-form">
@@ -221,7 +221,7 @@ export class CombatTurn extends React.Component<CombatTurnProps, {}> {
       );
     });
     return (
-      <div className='turn-wrapper shadow-1'>
+      <div className='turn-wrapper'>
         <div className='turn-counter'>{this.props.turnNo + 1}</div>
         <div className='turn-actor'>{participants}</div>
       </div>

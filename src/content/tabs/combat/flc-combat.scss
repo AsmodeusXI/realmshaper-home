@@ -6,6 +6,18 @@
       display: flex;
       flex-direction: column;
       align-content: center;
+
+      button#combat-reset-button {
+        @include error-button();
+      }
+
+      button#combat-start-button {
+        @include confirm-button();
+      }
+
+      button#add-turn-button {
+        @include confirm-button();
+      }
     }
 
     #flc-combat-setup {
@@ -15,14 +27,23 @@
       #participant-container {
         width: 100%;
         .new-participant {
-          @include secondary-light();
+          @include primary-reverse();
           padding: 10px;
-          margin: 5px 10px 5px 10px;
-          border-radius: 5px;
+          margin: 5px;
 
           .participant-field {
             margin: 10px;
             display: flex;
+
+            input {
+              color: inherit;
+              border-color: inherit;
+
+              &:focus {
+                color: $secondary;
+                border-color: $secondary;
+              }
+            }
 
             .participant-label {
               @include col4()
@@ -36,13 +57,24 @@
         }
       }
 
-      #add-combat-participant {
-        border: 3px dashed $slate-gray;
-        color: $slate-gray;
+      button#add-combat-participant {
+        box-shadow: none;
+        border: 3px dashed $primary-text;
+        color: $primary-text;
         background-color: $primary;
         font-size: 28px;
-        margin: 5px 10px 5px 10px;
+        margin: 5px;
         padding: 0 10px 0 10px;
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+
+        &:hover {
+          @include box-shadow(0px, 6px, 10px, 0px, rgba(0,0,0,0.2));
+          transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+      }
+
+      button#combat-start-button {
+        @include confirm-button();
       }
     }
 
@@ -53,9 +85,8 @@
 
       .turn-wrapper {
         padding: 10px;
-        margin: 10px 0 10px 0;
-        @include primary-dark();
-        border-radius: 5px;
+        margin: 10px 5px 10px 5px;
+        @include primary-reverse();
 
         .turn-counter {
           @include center();
@@ -67,7 +98,6 @@
         .turn-participant {
           padding: 10px;
           margin: 5px 0 5px 0;
-          border-radius: 5px;
           @include secondary();
           text-align: center;
 
@@ -76,7 +106,7 @@
           }
 
           button {
-            @include primary-dark();
+            @include primary-reverse();
           }
 
           .part-form {
@@ -90,9 +120,9 @@
             flex-wrap: wrap;
 
             .condition {
-              @include primary-dark();
-              border-radius: 3px;
-              padding: 0 5px 0 5px;
+              @include primary-reverse();
+              font-weight: bold;
+              padding: 5px;
               margin: 2px 5px 2px 5px;
             }
           }
@@ -130,6 +160,7 @@
           .turn-counter {
             flex: 1;
             text-decoration: none;
+            margin-right: 10px;
 
             &:after {
               content: ')';
