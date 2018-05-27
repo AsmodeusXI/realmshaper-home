@@ -4,12 +4,12 @@ import * as cr from "dnd-5e-cr-calculator";
 import './cr-calculator.scss';
 
 interface CRState {
-  hp: number,
-  ac: number,
-  dpr: number | string,
-  atk: number,
-  save: number,
-  cr: number | string
+  hp?: number,
+  ac?: number,
+  dpr?: number | string,
+  atk?: number,
+  save?: number,
+  cr?: number | string
 }
 
 export class CRCalculator extends React.Component<{}, CRState> {

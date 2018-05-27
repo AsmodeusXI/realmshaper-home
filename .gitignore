@@ -3,6 +3,7 @@ dist
 build
 
 .DS_Store
+*.swp
 
 # Logs
 logs
@@ -65,3 +66,4 @@ typings/
 
 # Vim ~
 *~
+.vim*

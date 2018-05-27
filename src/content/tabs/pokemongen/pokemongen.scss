@@ -1,0 +1,148 @@
+.default {
+  
+  #pokemon-gen-tab {
+
+    #pokemon-gen-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+			.pokemon-gen-setup {
+        width: 100%;
+
+	      .pokemon-type-select {
+	        padding: 10px;
+	        @include primary-reverse();
+	
+	        margin-bottom: 5px;
+	        display: flex;
+	        flex-direction: row;
+          align-items: center;
+          justify-content: space-evenly;
+          flex-wrap: wrap;
+	
+          .pokemon-type {
+            padding: 3px;
+            margin: 5px;
+            border-radius: 2px;
+            cursor: pointer;
+            width: 90px;
+          }
+
+          .selected-primary {
+            padding: 0px;
+            border: 3px solid green;
+          }
+
+          .selected-secondary {
+            padding: 0px;
+            border: 3px solid red;
+          }
+	      }
+	
+	      .pokemon-mp {
+	        padding: 10px;
+	        @include primary-reverse();
+				}	
+			}
+
+      .pokemon-gen {
+        width: 100%;
+        
+        .pokemon-move-add {
+          @include primary-reverse();
+          margin-top: 5px;        
+          padding: 10px;
+          display: flex;
+
+          .pokemon-moves {
+            flex: 4;
+            display: flex;
+            width: 100%;
+
+            .move-updater {
+              @include underline-input();
+              @include border-select();
+              display: flex;
+              width: 100%;
+              flex-direction: column;
+              align-items: center;
+
+              .part-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+              }
+
+              input, select {
+                &:focus {
+                  color: $secondary;
+                  border-color: $secondary;
+                }
+              }
+            }
+          }
+
+          .add-move-button {
+            flex: 1;
+            @include confirm-button();
+
+            &:disabled {
+              @include error-button();
+            }
+          }
+        }
+      }
+
+      .pokemon-move-list {
+        margin: 5px;
+        padding: 10px 0 10px 0;
+        @include primary-reverse();
+        width: 100%;
+
+        .pokemon-move {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          margin: 5px;
+
+          .pokemon-type {
+            padding: 2px;
+            border-radius: 2px;
+          }
+        }
+      }
+
+      @media only screen and (min-width: 1200px) {
+        .pokemon-gen-setup {
+          display: flex;
+
+					.pokemon-type-select {
+      	    flex: 3;
+      	    margin-right: 10px;
+      	    margin-bottom: 0px;
+      	  }
+
+          .pokemon-mp {
+            flex: 1;
+          }
+				}
+
+        .pokemon-gen {
+          .pokemon-move-add {
+            .pokemon-moves {
+              .move-updater {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
