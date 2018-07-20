@@ -6,6 +6,7 @@ import { NameGen } from "./tabs/namegen/namegen";
 import { FLCCombat } from "./tabs/combat/flc-combat";
 import { CRCalculator } from "./tabs/crcalc/cr-calculator";
 import { NavSection } from "./../nav/nav";
+import { PokemonGen } from "./tabs/pokemongen/pokemongen";
 
 import { GeneratorMain } from "name-maker";
 
@@ -30,6 +31,8 @@ export class Content extends React.Component<{}, {}> {
         return <FLCCombat />;
       case NavSection.crCalculator:
         return <CRCalculator />;
+      case NavSection.pokemonGen:
+        return <PokemonGen />
       default:
         throw new Error("Tab ID missing.");
     }

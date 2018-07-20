@@ -48,13 +48,13 @@ interface CombatParticipantProps extends CombatParticipantState {
 }
 
 interface CombatParticipantChangeState {
-  hpChange: string,
-  fpChange: string,
-  conditionNameChange: string,
-  conditionDurationChange: string,
-  hpDelta: Array<number>,
-  fpDelta: Array<number>,
-  conditionDelta: Array<CombatCondition>
+  hpChange?: string,
+  fpChange?: string,
+  conditionNameChange?: string,
+  conditionDurationChange?: string,
+  hpDelta?: Array<number>,
+  fpDelta?: Array<number>,
+  conditionDelta?: Array<CombatCondition>
 }
 
 class CombatParticipant extends React.Component<CombatParticipantProps, CombatParticipantChangeState> {
@@ -74,9 +74,9 @@ class CombatParticipant extends React.Component<CombatParticipantProps, CombatPa
   }
 
   changeField(event: any) {
-    const changeValue = event.target.value;
-    const changeName = event.target.getAttribute('name');
-    this.setState({ [changeName]: changeValue });
+    const changeValue: any = event.target.value;
+    const changeName: string = event.target.getAttribute('name');
+    this.setState({ [`${changeName}`]: changeValue });
   }
 
   updateDelta(): void {
@@ -208,7 +208,7 @@ export class CombatTurn extends React.Component<CombatTurnProps, {}> {
 
   render() {
     const participants: Array<JSX.Element> = [];
-    _.forEach(this.props.participants, (participant) => {
+    _.forEach(this.props.participants, (participant: any) => {
       participants.push(
         <CombatParticipant
           id={participant.id}

@@ -204,6 +204,23 @@ button {
   }
 }
 
+@mixin border-select {
+  select {
+    border-bottom: 1px solid $secondary-text;
+    border-radius: 0px;
+    color: $secondary-text;
+    background-color: inherit;
+    width: 127px;
+    text-align: center;
+    
+    &:focus {
+      outline: none;
+      color: $primary-text;
+      border-bottom: 1px solid $primary-text;
+    }
+  }
+}
+
 @mixin underline-input {
   input {
     margin-top: 5px;
@@ -225,6 +242,17 @@ button {
       padding-bottom: 0px;
     }
   }
+
+  /* For Firefox */
+  input[type='number'] {
+      -moz-appearance:textfield;
+  }
+  /* Webkit browsers like Safari and Chrome */
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
 }
 
 @mixin confirm-button {
@@ -239,4 +267,99 @@ button {
   color: #FFFFFF;
   background-color: #B32122;
   transition: none;
+}
+
+.Normal-class {
+  background-color: #A8A77A;
+  color: black;
+}
+
+.Fire-class {
+  background-color: #EE8130;
+  color: black;
+}
+
+.Water-class {
+  background-color: #6390F0;
+  color: black;
+}
+
+.Grass-class {
+  background-color: #7AC74C;
+  color: black;
+}
+
+.Electric-class {
+  background-color: #F7D02C;
+  color: black;
+}
+
+.Flying-class {
+  background-color: #A98FF3;
+  color: black;
+}
+
+.Fighting-class {
+  background-color: #C22E28;
+  color: white;
+}
+
+.Poison-class {
+  background-color: #A33EA1;
+  color: black;
+}
+
+.Ground-class {
+  background-color: #E2BF65;
+  color: black;
+}
+
+.Psychic-class {
+  background-color: #F95587;
+  color: black;
+}
+
+.Bug-class {
+  background-color: #A6B91A;
+  color: black;
+}
+
+.Ice-class {
+  background-color: #96D9D6;
+  color: black;
+}
+
+.Rock-class {
+  background-color: #B6A136;
+  color: black;
+}
+
+.Dragon-class {
+  background-color: #6F35FC;
+  color: white;
+}
+
+.Ghost-class {
+  background-color: #735797;
+  color: white;
+}
+
+.Dark-class {
+  background-color: #705746;
+  color: white;
+}
+
+.Steel-class {
+  background-color: #B7B7CE;
+  color: black;
+}
+
+.Fairy-class {
+  background-color: #D685AD;
+  color: black;
+}
+
+.Light-class {
+  background-color: #F1912B;
+  color: black;
 }

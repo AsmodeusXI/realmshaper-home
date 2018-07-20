@@ -4,8 +4,13 @@
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es5",
-    "jsx": "react"
+    "target": "es6",
+    "jsx": "react",
+    "lib": [
+      "es2017",
+      "es6",
+      "dom"
+    ]
   },
   "include": [
     "./src/**/*"
