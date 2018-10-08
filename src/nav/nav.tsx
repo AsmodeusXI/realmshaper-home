@@ -1,7 +1,5 @@
 import * as React from "react";
-
 import { Card } from "./card";
-
 import "./nav.scss";
 
 export enum NavSection {
@@ -10,38 +8,42 @@ export enum NavSection {
   nameGen = 'name-gen',
   flcCombat = 'flc-combat',
   crCalculator = 'cr',
-  pokemonGen = 'pokemon-gen'
+  pokemonGen = 'pokemon-gen',
 }
 
 interface NavProps {
-  tab?: string,
+  tab: string,
   handleNav?: Function
 }
 
-export class Nav extends React.Component<{}, {}> {
-  props: NavProps;
+export class Nav extends React.Component<NavProps, {}> {
+	private static navigationName: {[key: string]: string } = {
+		[NavSection.about]: 'About',
+		[NavSection.twitch]: 'Twitch Viewer',
+		[NavSection.flcCombat]: 'FLC Combat Tracker',
+		[NavSection.crCalculator]: 'D&D 5e CR Calculator',
+		[NavSection.pokemonGen]: 'FLC Pokémon Generator',
+		[NavSection.nameGen]: 'Name Generator',
+	};
+
+	static getNavigationName(navKey: string): string {
+		return Nav.navigationName[navKey];	
+	}
 
   getSelected(tab: string): string {
-    let className = 'nav-card';
-    if (tab === this.props.tab) className = `${className} selected`;
-    return className;
+    return (tab === this.props.tab) ? 'nav-card selected' : 'nav-card';
   }
 
-  render() {
+  render(): JSX.Element {
     return <nav>
-      <Card id={NavSection.about}
-        name='About' className={this.getSelected(NavSection.about)} handleNav={this.props.handleNav} />
-      <Card id={NavSection.twitch}
-        name='Twitch' className={this.getSelected(NavSection.twitch)} handleNav={this.props.handleNav} />
-      <Card id={NavSection.nameGen}
-        name='Name Generator' className={this.getSelected(NavSection.nameGen)} handleNav={this.props.handleNav} />
-      <Card id={NavSection.flcCombat}
-        name='FLC Combat Tracker' className={this.getSelected(NavSection.flcCombat)} handleNav={this.props.handleNav} />
-      <Card id={NavSection.pokemonGen}
-        name='FLC Pokemon Generator' className={this.getSelected(NavSection.pokemonGen)} handleNav={this.props.handleNav} />
-      <Card id={NavSection.crCalculator}
-        name='D&D 5e CR Calculator'
-        className={this.getSelected(NavSection.crCalculator)} handleNav={this.props.handleNav} />
-    </nav>;
+				{ 
+					Object.values(NavSection).map((tab: string): JSX.Element => {
+						return <Card id={tab}
+							name={Nav.getNavigationName(tab)}
+							className={this.getSelected(tab)}
+							handleNav={this.props.handleNav} />
+					}) 
+				}
+			</nav>;
   }
 }

@@ -13,7 +13,7 @@ interface AppSettings {
 }
 
 export class App extends React.Component<{}, AppSettings> {
-  constructor(props: any) {
+  constructor(props: object) {
     super(props);
     this.state = {
       tab: NavSection.about
@@ -24,7 +24,7 @@ export class App extends React.Component<{}, AppSettings> {
     this.setState({ tab });
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div id="rs-app" className="default">
         <Header/>

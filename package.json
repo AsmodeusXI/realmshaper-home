@@ -21,26 +21,26 @@
   },
   "homepage": "https://github.com/AsmodeusXI/realmshaper-home#readme",
   "dependencies": {
-    "@types/lodash": "^4.14.112",
-    "@types/react": "^16.4.6",
-    "@types/react-dom": "^16.0.6",
+    "@types/lodash": "^4.14.116",
+    "@types/react": "^16.4.16",
+    "@types/react-dom": "^16.0.8",
     "dnd-5e-cr-calculator": "^2.1.0",
     "flc-pokemon-gen": "^1.1.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "name-maker": "^1.1.1",
-    "node-sass": "^4.9.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-player": "^1.6.4",
+    "node-sass": "^4.9.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-player": "^1.6.6",
     "typescript": "^2.9.2"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.5.0",
     "css-loader": "^0.28.11",
     "sass-loader": "^6.0.7",
-    "source-map-loader": "^0.2.3",
+    "source-map-loader": "^0.2.4",
     "style-loader": "^0.20.3",
     "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.11.2"
+    "webpack-dev-server": "^2.11.3"
   }
 }

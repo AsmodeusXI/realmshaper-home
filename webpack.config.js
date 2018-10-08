@@ -32,7 +32,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              data: '@import "_variables"; @import "_standards";',
+              data: '@import "_types"; @import "_variables"; @import "_standards";',
               sourceMap: true,
               includePaths: [
                 path.resolve(__dirname, 'src')

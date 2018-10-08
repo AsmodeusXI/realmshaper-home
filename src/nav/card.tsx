@@ -1,10 +1,10 @@
 import * as React from "react";
 
 interface CardProps {
-  id?: string,
-  name?: string,
+  id: string,
+  name: string,
   className?: string,
-  handleNav?: Function
+  handleNav: Function
 }
 
 export class Card extends React.Component<{}, {}> {
@@ -14,9 +14,11 @@ export class Card extends React.Component<{}, {}> {
     super(props);
   }
 
-  render() {
-    const navClass = `shadow-1 ${this.props.className}`;
-    return <div id={this.props.id} className={navClass} onClick={() => this.props.handleNav(this.props.id)}>
+  render(): JSX.Element {
+    return <div 
+				id={this.props.id} 
+				className={`shadow-1 ${this.props.className}`} 
+				onClick={(): void => this.props.handleNav(this.props.id)}>
       {this.props.name}
     </div>;
   }
