@@ -1,0 +1,41 @@
+.default {
+	#habit-game-tab {
+		#habit-game-container {	
+			.habit-button {
+				width: 100%;
+
+				button {
+					@include confirm-button();
+					width: 100%;
+					margin: 10px 0px 0px 0px;
+				}
+			}
+
+			p {
+				margin: 5px;
+				padding: 10px;
+				text-align: center;
+				font-size: 18px;
+				@include primary-light();
+			}
+
+			@media only screen and (min-width: 1200px) {
+				display: flex;
+
+				.habit-button {
+					display: flex;
+					flex: 1;
+
+					button {
+						margin: 5px;
+					}
+				}
+
+				p {
+					padding: 20px;
+					flex: 4;
+				}
+			}
+		}
+	}
+}

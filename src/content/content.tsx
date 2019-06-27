@@ -6,6 +6,7 @@ import { FLCCombat } from "./tabs/combat/flc-combat";
 import { CRCalculator } from "./tabs/crcalc/cr-calculator";
 import { NavSection, Nav } from "./../nav/nav";
 import { PokemonGen } from "./tabs/pokemongen/pokemongen";
+import { HabitGame } from "./tabs/habitgame/habitgame";
 import './content.scss';
 
 interface ContentProps {
@@ -26,7 +27,9 @@ export class Content extends React.Component<ContentProps, {}> {
       case NavSection.crCalculator:
         return <CRCalculator pageName={Nav.getNavigationName(NavSection.crCalculator)}/>;
       case NavSection.pokemonGen:
-        return <PokemonGen pageName={Nav.getNavigationName(NavSection.pokemonGen)}/>
+        return <PokemonGen pageName={Nav.getNavigationName(NavSection.pokemonGen)}/>;
+			case NavSection.habitGame:
+				return <HabitGame pageName={Nav.getNavigationName(NavSection.habitGame)}/>;
       default:
         throw new Error("ERROR: No tab with this ID exists. How did you click this?");
     }

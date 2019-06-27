@@ -9,6 +9,7 @@ export enum NavSection {
   flcCombat = 'flc-combat',
   crCalculator = 'cr',
   pokemonGen = 'pokemon-gen',
+	habitGame = 'habit-game'
 }
 
 interface NavProps {
@@ -24,6 +25,7 @@ export class Nav extends React.Component<NavProps, {}> {
 		[NavSection.crCalculator]: 'D&D 5e CR Calculator',
 		[NavSection.pokemonGen]: 'FLC Pokémon Generator',
 		[NavSection.nameGen]: 'Name Generator',
+		[NavSection.habitGame]: 'Habit Game Generator'
 	};
 
 	static getNavigationName(navKey: string): string {
