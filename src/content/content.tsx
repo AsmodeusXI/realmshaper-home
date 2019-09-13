@@ -6,7 +6,7 @@ import { FLCCombat } from "./tabs/combat/flc-combat";
 import { CRCalculator } from "./tabs/crcalc/cr-calculator";
 import { NavSection, Nav } from "./../nav/nav";
 import { PokemonGen } from "./tabs/pokemongen/pokemongen";
-import { HabitGame } from "./tabs/habitgame/habitgame";
+import HabitGame from "./tabs/habitgame/habitgame";
 import './content.scss';
 
 interface ContentProps {
