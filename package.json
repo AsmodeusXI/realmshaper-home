@@ -26,7 +26,7 @@
     "@types/react-dom": "^16.9.0",
     "dnd-5e-cr-calculator": "^2.1.0",
     "flc-pokemon-gen": "^1.1.0",
-    "habit-game-creator": "0.0.1",
+    "habit-game-creator": "0.0.2",
     "lodash": "^4.17.15",
     "name-maker": "^1.1.1",
     "node-sass": "^4.12.0",
@@ -41,7 +41,7 @@
     "sass-loader": "^6.0.7",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.20.3",
-    "webpack": "^3.12.0",
+    "webpack": "^4.0.0",
     "webpack-dev-server": "^2.11.5"
   }
 }
