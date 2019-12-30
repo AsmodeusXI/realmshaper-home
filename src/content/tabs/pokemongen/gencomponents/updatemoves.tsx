@@ -29,18 +29,17 @@ export class UpdateMoves extends React.Component<UpdateMovesProps, PokemonMove> 
 
   prepareMove(event: any): void {
     const field = event.target.name;
-    let val = event.target.value;
+		let val = event.target.value;
     if (field === 'power' || field === 'status') val = parseInt(val);
-    
+
     if (this.props.type1) {
       this.setState((prevState: PokemonMove): PokemonMove => {
-        const newMove = Object.assign({}, prevState, { [`${field}`]: val });
-        delete newMove.mp;
+        const newMove = { ...prevState, mp: 0, [`${field}`]: val };
         newMove.mp = gen.getMoveMP(newMove, {
           type1: this.props.type1,
           type2: this.props.type2,
           moves: this.props.moves,
-        });
+				});
         return newMove;
       });
     }
@@ -55,19 +54,21 @@ export class UpdateMoves extends React.Component<UpdateMovesProps, PokemonMove> 
       mp: 0,
     });
   }
-  
+
   render(): JSX.Element {
     return (
 			<section className='pokemon-moves'>
     	  <div className="move-updater">
     	    <div className='part-form'>
-						<ResInput name='name'
+						<ResInput
+							name='name'
 							placeholder='Move Name'
 							value={this.state.name}
 							update={this.prepareMove} />
     	    </div>
     	    <div className='part-form'>
-						<ResSelect name='type'
+						<ResSelect
+							name='type'
 							update={this.prepareMove}
 							options={Object.values(PokemonType).map((type: string): JSX.Element => {
 								return (
@@ -76,19 +77,21 @@ export class UpdateMoves extends React.Component<UpdateMovesProps, PokemonMove> 
 							})} />
     	    </div>
     	    <div className='part-form'>
-						<ResInput name='power'
+						<ResInput
+							name='power'
 							type='number'
 							placeholder='Move Power'
 							value={this.state.power}
 							update={this.prepareMove} />
     	    </div>
     	    <div className='part-form'>
-						<ResSelect name='status'
+						<ResSelect
+							name='status'
 							update={this.prepareMove}
 							options={Object.keys(MoveStatus).map((move): JSX.Element => {
 								if (typeof MoveStatus[move as any] === 'number') {
       					  return (
-										<option 
+										<option
 											value={MoveStatus[move]}
 											selected={this.state.status === MoveStatus[move]}>
 											{move}
@@ -99,7 +102,8 @@ export class UpdateMoves extends React.Component<UpdateMovesProps, PokemonMove> 
     	    </div>
     	    <p>Move MP: {this.state.mp}</p>
     	  </div>
-    	  <AddMove mp={this.props.mp} 
+				<AddMove
+					mp={this.props.mp}
     	    addMove={this.props.addMove}
     	    move={this.state}
     	    resetCurrentMove={this.resetCurrentMove} />

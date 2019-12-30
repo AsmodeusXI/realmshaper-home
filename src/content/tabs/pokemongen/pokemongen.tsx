@@ -16,10 +16,11 @@ interface GenState {
 export class PokemonGen extends MainSection<GenState> {
   constructor(props: MainSectionProps) {
     super(props);
+    // Default to NORMAL just so the whole page works.
     this.state = {
-      type1: null,
+      type1: PokemonType.NORMAL,
       type2: null,
-      mp: 0,
+      mp: gen.getMPForType(PokemonType.NORMAL, null),
       moves: [],
     };
   }
@@ -29,7 +30,7 @@ export class PokemonGen extends MainSection<GenState> {
 			mp: 0,
 			moves: [],
 		};
-    
+
     if (event.target.innerText === this.state.type1) {
       if (!this.state.type2) { return; }
       newState['type1'] = this.state.type2;
@@ -69,7 +70,7 @@ export class PokemonGen extends MainSection<GenState> {
           </p>
         </section>
         <section id="pokemon-gen-container">
-					<section className="pokemon-gen-setup">		
+					<section className="pokemon-gen-setup">
 						<section className="pokemon-type-select">{
 							Object.values(PokemonType).map((type: string): JSX.Element => {
 							  let typeClass = `pokemon-type ${type}-class`;
@@ -90,13 +91,13 @@ export class PokemonGen extends MainSection<GenState> {
           </section>
           <section className="pokemon-gen">
             <section className="pokemon-move-add">
-               <UpdateMoves 
+               <UpdateMoves
                 addMove={this.addMove.bind(this)}
-                mp={this.state.mp} 
+                mp={this.state.mp}
                 type1={this.state.type1}
                 type2={this.state.type2}
                 moves={this.state.moves}
-              /> 
+              />
             </section>
           </section>
           <section className="pokemon-move-list">{

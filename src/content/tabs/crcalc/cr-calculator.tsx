@@ -23,13 +23,16 @@ export class CRCalculator extends MainSection<CRState> {
       atk: null,
       save: null,
       cr: null
-    }
+		};
+
+		this.updateField = this.updateField.bind(this);
+		this.calculateCR = this.calculateCR.bind(this);
   }
 
   updateField(event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({ 
-			[event.target.getAttribute('name')]: 
-				event.target.value.includes('d') 
+    this.setState({
+			[event.target.getAttribute('name')]:
+				event.target.value.includes('d')
 					? event.target.value
 					: parseInt(event.target.value),
 		});
@@ -37,11 +40,11 @@ export class CRCalculator extends MainSection<CRState> {
 
   calculateCR(): void {
 		const calc: string = (typeof this.state.dpr === 'string')
-			? 'calculateWithDice' 
-			: 'calculate'; 
-		
+			? 'calculateWithDice'
+			: 'calculate';
+
 		try {
-      this.setState({ 
+      this.setState({
 				cr: cr[calc](
 					this.state.hp,
 					this.state.ac,
@@ -78,42 +81,51 @@ export class CRCalculator extends MainSection<CRState> {
       	    <div className="cr-input-fields">
       	      <div className="part-form">
       	        <div><b>HP</b></div>
-								<ResInput name='hp'
+								<ResInput
+									name='hp'
 									type='text'
+									value={this.state.hp}
 									placeholder='Hit Points'
-									update={this.updateField.bind(this)} />
+									update={this.updateField} />
       	      </div>
       	      <div className="part-form">
       	        <div><b>AC</b></div>
-								<ResInput name='ac'
+								<ResInput
+									name='ac'
 									type='text'
+									value={this.state.ac}
 									placeholder='Armor Class'
-									update={this.updateField.bind(this)} />
+									update={this.updateField} />
       	      </div>
       	      <div className="part-form">
       	        <div><b>DpR</b></div>
-								<ResInput name='dpr'
+								<ResInput
+									name='dpr'
 									type='text'
+									value={this.state.dpr}
 									placeholder='Damage per Round'
-									update={this.updateField.bind(this)} />
+									update={this.updateField} />
       	      </div>
       	      <div className="part-form">
       	        <div><b>Atk</b></div>
-								<ResInput name='atk'
+								<ResInput
+									name='atk'
 									type='text'
+									value={this.state.atk}
 									placeholder='Attack Bonus'
-									update={this.updateField.bind(this)} />
+									update={this.updateField} />
       	      </div>
       	      <div className="part-form">
       	        <div><b>Save</b></div>
 								<ResInput name='save'
 									type='text'
+									value={this.state.save}
 									placeholder='Save DC'
-									update={this.updateField.bind(this)} />
+									update={this.updateField} />
       	      </div>
       	    </div>
       	    <div className="cr-input-button">
-      	      <button onClick={this.calculateCR.bind(this)}>Create</button>
+      	      <button onClick={this.calculateCR}>Create</button>
       	    </div>
       	  </div>
       	  <div className="cr-result">
