@@ -29,23 +29,36 @@ export class Nav extends React.Component<NavProps, {}> {
 	};
 
 	static getNavigationName(navKey: string): string {
-		return Nav.navigationName[navKey];	
+		return Nav.navigationName[navKey];
 	}
 
   getSelected(tab: string): string {
     return (tab === this.props.tab) ? 'nav-card selected' : 'nav-card';
-  }
+	}
+
+	toggleMenu() {
+		document.getElementsByTagName('nav')[0].className === 'hide-nav'
+			? document.getElementsByTagName('nav')[0].className = 'show-nav'
+			: document.getElementsByTagName('nav')[0].className = 'hide-nav';
+	}
 
   render(): JSX.Element {
-    return <nav>
-				{ 
-					Object.values(NavSection).map((tab: string): JSX.Element => {
-						return <Card id={tab}
-							name={Nav.getNavigationName(tab)}
-							className={this.getSelected(tab)}
-							handleNav={this.props.handleNav} />
-					}) 
-				}
-			</nav>;
+    return (
+			<>
+				<section className="nav-display" onClick={() => this.toggleMenu()}>
+					<i className="fa fa-caret-right"/> Click to Toggle Menu
+				</section>
+				<nav className='hide-nav'>
+					{
+						Object.values(NavSection).map((tab: string): JSX.Element => {
+							return <Card id={tab}
+								name={Nav.getNavigationName(tab)}
+								className={this.getSelected(tab)}
+								handleNav={this.props.handleNav} />
+						})
+					}
+				</nav>
+			</>
+		);
   }
 }

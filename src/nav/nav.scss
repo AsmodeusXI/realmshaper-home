@@ -1,4 +1,12 @@
 .default {
+  .nav-display {
+    padding: 5px;
+    margin: 10px 10px 5px 10px;
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    @include primary();
+    @include box-shadow(0px, 5px, 5px, 0px, rgba(0,0,0,0.4));
+  }
   nav {
     padding-top: 10px;
 

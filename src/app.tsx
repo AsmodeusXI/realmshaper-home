@@ -21,6 +21,7 @@ export class App extends React.Component<{}, AppSettings> {
   }
 
   handleNav(tab: NavSection): void {
+		document.getElementsByTagName('nav')[0].className = 'hide-nav';
     this.setState({ tab });
   }
 

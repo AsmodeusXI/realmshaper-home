@@ -11,12 +11,28 @@ html, body {
 // DEFAULT STYLE
 .default {
   #rs-main {
+    .hide-nav {
+      display: none;
+    }
+
+    .show-nav {
+      display: block;
+    }
+
     @media only screen and (min-width: 1200px) {
       display: flex;
       align-content: center;
 
       main {
         flex: 4;
+      }
+
+      .nav-display {
+        display: none;
+      }
+
+      .hide-nav {
+        display: block;
       }
 
       nav {
