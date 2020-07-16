@@ -27,7 +27,7 @@
     "dnd-5e-cr-calculator": "^2.1.0",
     "flc-pokemon-gen": "^1.1.0",
     "habit-game-creator": "0.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "name-maker": "^1.1.1",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
