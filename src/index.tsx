@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { App } from "./app";
+import RSApp from "./components/rsapp/rsapp";
 
 ReactDOM.render(
-  <App />,
+  <RSApp />,
   document.getElementById("root")
 );
