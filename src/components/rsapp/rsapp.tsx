@@ -8,6 +8,7 @@ import {
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import Bio from '../bio/bio';
+import RSNav from '../rsnav/rsnav';
 import './rsapp.scss';
 
 const RSApp = (): JSX.Element => {
@@ -16,24 +17,11 @@ const RSApp = (): JSX.Element => {
             <section id="rs-app">
                 <Header />
                 <main id="rs-main">
-                    <nav id="rs-nav">
-                        <ul>
-                            <li>
-                                <Link to="/">Bio</Link>
-                            </li>
-                            <li>
-                                <Link to="/test">Test</Link>
-                            </li>
-                        </ul>
-                    </nav>
+                    <RSNav />
                     <section id="rs-page">
                         <Switch>
-                            <Route path="/test">
-                               <p>Test.</p>
-                            </Route>
-                            <Route path="/">
-                                <Bio />
-                            </Route>
+                            <Route path="/test"><p>Test.</p></Route>
+                            <Route path="/"><Bio /></Route>
                         </Switch>
                     </section>
                 </main>
